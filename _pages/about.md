@@ -8,7 +8,6 @@ redirect_from:
 ---
 
 ## About Me
-![Baymax](/images/jarvis.jpeg){: .align-right width = "250px"}
 
 <div style="text-align: justify;">
 
