@@ -8,12 +8,15 @@ redirect_from:
 ---
 
 ## About Me
-![Baymax](/images/baymax.jpg){: .align-right width = "300px"}
+![Baymax](/images/jarvis.jpeg){: .align-right width = "250px"}
+
 <div style="text-align: justify;">
 
 🎓 I am a recent Master's in Computer Science graduate from Stevens Institute of Technology, with a GPA of 3.889. I also hold a Bachelor's degree in Electronics and Telecommunication Engineering from the University of Mumbai, where I graduated with a GPA of 9.35/10.0.
 
+
 🤖 I have varied interests in the tech domain including but not limited to Machine Learning, Cloud Computing, Web Development, Application Development, Natural Language Processing, and more.
+
 
 🧑‍💻 I have hands-on experience in developing innovative solutions, leading technical projects, and utilizing advanced technologies to solve complex problems.
 
