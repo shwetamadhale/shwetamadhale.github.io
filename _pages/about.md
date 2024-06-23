@@ -1,49 +1,180 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "👋Hello there, I'm Shweta!!"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the respository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this repository](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads! An older version of this template powers my own personal website at [stuartgeiger.com](http://stuartgeiger.com), which uses [this Github repository](https://github.com/staeiou/staeiou.github.io).
-
-A data-driven personal website
+About Me
 ======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+![Baymax]{/images/baymax.jpg}{: .align-right width = "500px" height = "300px"}
+🎓 I am a recent Master's in Computer Science graduate from Stevens Institute of Technology, with a GPA of 3.889. I also hold a Bachelor's degree in Electronics and Telecommunication Engineering from the University of Mumbai, where I graduated with a GPA of 9.35/10.0.
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over -- just be sure to save the markdown files! Finally, you can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+🤖 I have varied interests in the tech domain including but not limited to Machine Learning, Cloud Computing, Web Development, Application Development, Natural Language Processing, and more.
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+🧑‍💻 I have hands-on experience in developing innovative solutions, leading technical projects, and utilizing advanced technologies to solve complex problems.
 
-Site-wide configuration
+
+📜 Some background
 ------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+Since middle school, I've been captivated by technology, sparked by the magic of creating my first HTML website. That initial experience felt like wielding a magic wand that could do anything I imagined. Over the years, I pursued my passion through a blend of academic courses and self-guided learning. Initially drawn to web development for its combination of aesthetics and functionality, I later delved into hardware, leading me to earn a Bachelor's degree in Electronics and Telecommunication Engineering.
 
-Create content & metadata
+As I dived deeper into understanding both the hardware and software aspects of technology, my journey took an exciting turn during my sophomore year of college. Attending a session hosted by my university's Google Developer Students Club(GDSC) introduced me to the world of machine learning and artificial intelligence. Prior to this, I had honed my skills in programming languages like Java, C, and C++, building small-scale projects and exploring competitive programming.
+
+By my junior year, my passion for software development had solidified, leading me to pursue a Master's in Computer Science in the United States. Despite already possessing a breadth of knowledge, I enrolled in foundational courses to deepen my understanding. Concurrently, I embarked on personal projects that allowed me to apply my existing skills and acquire new ones. Academic coursework further bolstered my learning, providing opportunities to work on challenging projects that reinforced my academic foundation.
+
+🗂️ Academic Projects
 ------
-For site content, there is one markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+1. CS 524 (Cloud Computing) - Transforming Monolithic Application into Microservices with AWS CI/CD Pipeline        
+   
+  Designed and deployed microservices architecture, containerization (Docker), and cloud-native development using AWS services
+  Relevant Skills : Microservices Architecture, CI/CD, Docker, AWS ECS, CodeDeploy
+  Learn more at/ view code: [Repo](https://github.com/shwetamadhale/monolithic-to-microservice)
 
-**Markdown generator**
+2. CS 583 (Natural Language Processing) - Symptom Extraction and Linking from Vaccine Adverse Event Reports
+  Used NLP techniques like Named Entity Recognition (NER), Sequence Labeling, and Machine Learning models for data analysis
+  Relevant Skills :  Natural Language Processing, Machine Learning
+  Learn more at/ view code: [Repo](https://github.com/shwetamadhale/vaers-linking-and-analysis)  
 
-I have also created [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the markdown files, then commit and push them to the GitHub repository.
+3. CS 541 (Artificial Intelligence) - Analysis of NBA ‘Player Offensive Efficiency (POE)’ using AI
+  Created own features for analyzing the player offensive efficiency based on the NBA statistics and then performed rank overlap of ranking from new features with ESPN rankings.
+  Relevant Skills : Machine Learning, Artificial Intelligence, Data Visualization
+  Learn more at/ view code: [Repo](https://github.com/shwetamadhale/nba_poe_analysis)
 
-How to edit your site's GitHub repository
+4. Recognition of Handwritten Math Equation 
+  Generated new dataset from customized data collection website, used the images to tarin and test on a CNN LSTM architecture
+  Relevant Skills : Web Development, Machine Learning
+  Learn more at/ view code: [Repo](https://github.com/shwetamadhale/fyp)
+
+5. 'FAQ and Help' Chatbot
+  Created a chatbot which was trained on pre-defined frequently asked questions for the Google Developer Students Club (GDSC) of SIES Graduate School of Technology.
+  Relevant Skills : Web Development, Chatbot, Natural Language Processing
+
+6. Intelligent Traffic Control System
+  Devised a system which predicted traffic light duration based on rela time image processing and computer vision techniques
+  Relevant Skills : MATLAB, Image Processing, Computer Vision
+  Learn more at/ view code: [Repo](https://github.com/shwetamadhale/CV_intelligent_traffic_control)
+
+
+🪛 Personal Projects
 ------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+1. Cloud-Based Personal Finance Manager with AWS and Jenkins CI/CD 
+  Created a personal finance manager with AWS and automated the deployment with Jenkins CI/CD, used flask for web application development
+  Relevant Skills : AWS, CI/CD, Flask
+  Learn more/ View Code: 
+2. LangChain Chatbot WebApp on custom data with LLM
+  Created a webapp which can accept and process PDF uploaded. Use processed data as custom input for HuggingFace LLM along with embeddings. Test knowledge of the bot on the extracted custom data.
+  Relevant Skills : Web Development, NLP
+  Learn more/ View Code: [Repo](https://github.com/shwetamadhale/pdf_chatbot_llm)
+3. Sentiment analyzer chatbot for music recommendation
+  Created a chatbot which can determine the mood from conversation and based on that recommend most relevant song.
+  Relevant Skills : Web Development, NLP, Machine Learning
+  Learn more/ View Code: [Repo](https://github.com/shwetamadhale/SentimentAnalysisWMusicRecChatBot)
+4. Archive - Notes Manager 
+  Developed a mobile application which is supported by firebase for user authentication and storage
+  Relevant Skills : Android Development, Firebase
+  Learn more/ View Code: [Repo](https://github.com/shwetamadhale/ArchiveApp)
 
-Example: editing a markdown file for a talk
-![Editing a markdown file for a talk](/images/editing-talk.png)
 
-For more info
+🤯 Some more projects
 ------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+1. Performing GeoAnalysis for Accomodation Recommendation - [Code](https://github.com/shwetamadhale/AccomodationRecWGeoAnalysis)
+2. Flappy Bird Game with Vanilla Javascript - [Code]https://github.com/shwetamadhale/FlappyBirdGame
+3. ToDo List WebApp - [Code](https://github.com/shwetamadhale/ToDoList)
+4. WebApp for Diabetes Detection with Machine Learning - [Code](https://github.com/shwetamadhale/WebAppDiabetesDetectionML)
+5. Movie Recommendation - [Code](https://github.com/shwetamadhale/MovieRecommendation)
+6. COVID 19 Prediction - [Code](https://github.com/shwetamadhale/COVID19Prediction)
+7. WebApp for GRE MCQ/Flashcards - [Code](https://github.com/shwetamadhale/MCQforGRE)
+8. GUI for a General Store Database - [Code](https://github.com/shwetamadhale/GUItoDatabase-generalstore-)
+9. Resume Builder Web Application - [Code](https://github.com/shwetamadhale/ResumeBuilder)
+10. React Application for Recipes - [Code](https://github.com/shwetamadhale/RecipeApp)
+11. Sentiment Analysis on Youtube Comments - [Code](https://github.com/shwetamadhale/SentimentAnalysisYTCmmts)
+
+📚 Coursework
+------
+1. CS 524 (Cloud Computing) 
+  1. CPU Virtualization - Virtualization, Hypervisors
+  2. Data Networks - OSI Reference Model, Internet Protocol Suite, QoS
+  3. Networking Appliances - DNS, Firewalls, NATs, Load Balancers
+  4. Cloud Storage
+  5. Operations, Management, and Orchestration in Cloud
+2. CS 583 (Deep Learning)
+  1. Regression (Linear, Logistic, Polynomial)
+  2. Neural Networks, MLP, 
+  3. CNN, RNN, LSTM
+  4. Machine Translation
+  5. Attention and Self-Attention
+  6. Transformers
+  7. Autoencoders
+  8. VAE
+  9. Generative Adversarial Nets
+  10. Reinforcement Learning
+3. SSW 564 (Software Requirements Analysis and Engineering)
+  1. Requirements elicitation
+  2. Functionality of requirements
+  3. Low fidelity prototype of User Interface
+  4. Costs and risks of requirement process and relation to rest of SDLC
+4. SSW 555 (Agile Methods for Software Development)
+  1. User stories, SCRUM
+  2. Test first
+  3. Pair Programming
+  4. Refactoring
+  5. Lean
+  6. Dynamic Systems Development
+  7. Crystal
+  8. Agile Unified Process
+5. CS 559 (Machine Learning)
+  1. Bayesian Decision Theory, Minimum Error Rate, Classifiers, Discriminant Function
+  2. Regressions, Gradient Descent, Generalized Models
+  3. Fisher's Linear Discriminant, Principal Component Analysis
+  4. Non Parametric Methods, parzen Window
+  5. KNN, Clustering, GMM
+  6. Expectation Maximization
+  7. Latent variable models
+  8. Graphical Models
+  9. Neural Networks
+  10. Decision trees, Ensemble Method
+6. CS 584 (Natural Language Processing)
+  1. Language modeling - N grams
+  2. RNN, CNN
+  3. Machine translation
+  4. Seq2Seq Model
+  5. Self-attention, Transformers
+  6. Pretraining, Prompting
+  7. Chain of thought, Dependency Parsing, Interpretability
+7. CS 541 (Artificial Intelligence)
+  1. Intelligent agents, Search strategy, Heuristic Search, Constraint Satisfaction, Adversarial Search
+  2. Logic, Uncertainity, Bayesian Network
+  3. Knowledge representation
+  4. Markov Decision Process
+  5. Decision Theory, Decision Trees, Information Trees
+  6. Reinforcement Learning
+8. CS 556 (Mathematical Foundations of ML)
+  1. Linear Algebra, Matrix Decomposition, Dimensionality Reduction with PCA
+  2. Eigen Decomposition, SVD, PCA, probability
+  3. Derivatives, Optimization, Gradient Descent
+  4. Regression and Classification
+9. CS 590 (Algorithms)
+  1. Algorithm Analysis - Function growth, Time complexity, Loop Invariants
+  2. Sorting Algorithms - Insertion, Merge, Heap, Quick, Counting, Radix, Bucket
+  3. Trees - Binary Search Trees, Red Black, Avalanche
+  4. Data Structures, Dynamic Programming, Greedy Algorithm
+  5. Graph Algorithms - BFS, DFS, Topological, Minimum Spanning, Shortest Path
+10. CS 501 (Java)
+  1. Methods, Loops, objects, classes
+  2. OOP, Inheritance, Polymorphism, Exception handling
+  3. JavaFx
+  4. Recursion, Generics, Data Structures
+11. CS 515 (Fundamentals of Computing)
+  1. Functions, Conditionals, Lists, Methods, Loops, Reference Objects
+  2. Incremental Coding, Nesting, Images, Dictionaries
+  3. File I/O, Search, shuffle, sorting
+12. CS 570 (Data Structures and Algorithms)
+  1. Searching and algorithm analysis
+  2. Lists, Stacks, Queues
+  3. Recursion
+  4. Trees, Heaps, Treaps
+  5. Hash table and Sets
+  6. Sorting
+
