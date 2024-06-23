@@ -8,7 +8,7 @@ redirect_from:
 ---
 
 ## About Me
-![Baymax](/images/baymax.jpg){: .align-right width = "450px"}
+![Baymax](/images/baymax.jpg){: .align-right width = "300px"}
 <div style="text-align: justify;">
 🎓 I am a recent Master's in Computer Science graduate from Stevens Institute of Technology, with a GPA of 3.889. I also hold a Bachelor's degree in Electronics and Telecommunication Engineering from the University of Mumbai, where I graduated with a GPA of 9.35/10.0.
 
@@ -30,6 +30,7 @@ By my junior year, my passion for software development had solidified, leading m
 
 ## 🗂️ Academic Projects
 <div style="text-align: justify;">
+
 1. **CS 524 (Cloud Computing) - Transforming Monolithic Application into Microservices with AWS CI/CD Pipeline**        
     Designed and deployed microservices architecture, containerization (Docker), and cloud-native development using AWS services
     Relevant Skills : Microservices Architecture, CI/CD, Docker, AWS ECS, CodeDeploy
@@ -63,6 +64,7 @@ By my junior year, my passion for software development had solidified, leading m
 
 ## 🪛 Personal Projects
 <div style="text-align: justify;">
+
 1. **Cloud-Based Personal Finance Manager with AWS and Jenkins CI/CD** 
   Created a personal finance manager with AWS and automated the deployment with Jenkins CI/CD, used flask for web application development
   Relevant Skills : AWS, CI/CD, Flask
@@ -79,10 +81,12 @@ By my junior year, my passion for software development had solidified, leading m
   Developed a mobile application which is supported by firebase for user authentication and storage
   Relevant Skills : Android Development, Firebase
   Learn more/ View Code: [Repo](https://github.com/shwetamadhale/ArchiveApp)
+
 </div>
 
 ## 🤯 Some more projects
 <div style="text-align: justify;">
+
 1. Performing GeoAnalysis for Accomodation Recommendation - [Code](https://github.com/shwetamadhale/AccomodationRecWGeoAnalysis)
 2. Flappy Bird Game with Vanilla Javascript - [Code]https://github.com/shwetamadhale/FlappyBirdGame
 3. ToDo List WebApp - [Code](https://github.com/shwetamadhale/ToDoList)
@@ -94,10 +98,12 @@ By my junior year, my passion for software development had solidified, leading m
 9. Resume Builder Web Application - [Code](https://github.com/shwetamadhale/ResumeBuilder)
 10. React Application for Recipes - [Code](https://github.com/shwetamadhale/RecipeApp)
 11. Sentiment Analysis on Youtube Comments - [Code](https://github.com/shwetamadhale/SentimentAnalysisYTCmmts)
+
 </div>
 
 ## 📚 Coursework
 <div style="text-align: justify;">
+
 1. **CS 524 (Cloud Computing)** - A(4.0)
     1. CPU Virtualization - Virtualization, Hypervisors
     2. Data Networks - OSI Reference Model, Internet Protocol Suite, QoS
