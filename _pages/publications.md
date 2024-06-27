@@ -7,13 +7,8 @@ author_profile: true
 
 {% include base_path %}
 
-<style>
-  .papers-item {
-    text-align: justify;
-  }
-</style>
 
-<div class="papers">
+<div style="text-align: justify;">
   <ul>
     <li>
       <a href="{{ site.baseurl }}/files/Survey Paper.pdf" target="_blank">Recognition of Handwritten Mathematical Expressions: A Survey</a> <br> Handwritten Mathematical Expressions (HME) recognition is crucial in numerous fields, especially with the growth of online education and digital documentation. This research surveys existing HME recognition techniques, including datasets, preprocessing, segmentation, and classification methods like CNN, MLP, and RNN. It evaluates the strengths and weaknesses of these approaches and suggests potential improvements for future HME recognition systems.

@@ -7,9 +7,8 @@ author_profile: true
 
 {% include base_path %}
 
-<div class="container">
+<div class="container" style="text-align: justify;">
   <h2>🗂️ Academic Projects</h2>
-  {% capture academic_projects %}
     <ul>
       <li>
         <strong>CS 524 (Cloud Computing) - Transforming Monolithic Application into Microservices with AWS CI/CD Pipeline</strong><br>
@@ -47,12 +46,8 @@ author_profile: true
         Learn more at/ view code: <a href="https://github.com/shwetamadhale/CV_intelligent_traffic_control">Repo</a>
       </li>
     </ul>
-  {% endcapture %}
-
-  {{ academic_projects | markdownify }}
 
   <h2>🪛 Personal Projects</h2>
-  {% capture personal_projects %}
     <ul>
       <li>
         <strong>Cloud-Based Personal Finance Manager with AWS and Jenkins CI/CD</strong><br>
@@ -79,11 +74,8 @@ author_profile: true
         Learn more/View Code: <a href="https://github.com/shwetamadhale/ArchiveApp">Repo</a>
       </li>
     </ul>
-  {% endcapture %}
 
-  {{ personal_projects | markdownify }}
-
-  <h2>🤯 Some more projects</h2>
+    <h2>🤯 Some more projects</h2>
   <ul>
     <li>Performing GeoAnalysis for Accommodation Recommendation - <a href="https://github.com/shwetamadhale/AccomodationRecWGeoAnalysis">Code</a></li>
     <li>Flappy Bird Game with Vanilla Javascript - <a href="https://github.com/shwetamadhale/FlappyBirdGame">Code</a></li>
