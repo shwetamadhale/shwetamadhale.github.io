@@ -1,11 +1,12 @@
 ---
 permalink: /
+title: "Homepage"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-## 👋Hello there, I'm Shweta!!
+# 👋Hello there, I'm Shweta!!
 Please use the tabs above to navigate
 ## 🎓About Me
 
