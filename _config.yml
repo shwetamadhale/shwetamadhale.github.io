@@ -8,11 +8,11 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Shweta's Homepage"
+title                    : "Shweta's Portfolio"
 title_separator          : "-"
 name                     : &name "Shweta Madhale"
 description              : &description "Portfolio website"
-url                      : https://shwetamadhale.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://shwetamadhale.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
 
