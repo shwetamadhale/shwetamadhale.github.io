@@ -6,14 +6,18 @@ main:
   - title: "Projects"
     url: /projects/
 
-  - title: "Papers"
-    url: /publications/
-
-  # - title: "Talks"
-  #   url: /talks/    
-
   - title: "Coursework"
-    url: /coursework/    
+    url: /coursework/ 
+
+  - title: "Certifications and Achievements"
+    url: /certifications/
+
+  - title: "Papers"
+    url: /papers/
+
+    
+
+     
     
   # - title: "Portfolio"
   #   url: /portfolio/
