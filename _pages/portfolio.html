@@ -1,14 +1,101 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "Projects"
+permalink: /projects/
 author_profile: true
 ---
 
 {% include base_path %}
 
+<div class="container">
+  <h2>🗂️ Academic Projects</h2>
+  {% capture academic_projects %}
+    <ul>
+      <li>
+        <strong>CS 524 (Cloud Computing) - Transforming Monolithic Application into Microservices with AWS CI/CD Pipeline</strong><br>
+        Designed and deployed microservices architecture, containerization (Docker), and cloud-native development using AWS services<br>
+        Relevant Skills : Microservices Architecture, CI/CD, Docker, AWS ECS, CodeDeploy<br>
+        Learn more at/ view code: <a href="https://github.com/shwetamadhale/monolithic-to-microservice">Repo</a>
+      </li>
+      <li>
+        <strong>CS 583 (Natural Language Processing) - Symptom Extraction and Linking from Vaccine Adverse Event Reports</strong><br>
+        Used NLP techniques like Named Entity Recognition (NER), Sequence Labeling, and Machine Learning models for data analysis<br>
+        Relevant Skills :  Natural Language Processing, Machine Learning<br>
+        Learn more at/ view code: <a href="https://github.com/shwetamadhale/vaers-linking-and-analysis">Repo</a>
+      </li>
+      <li>
+        <strong>CS 541 (Artificial Intelligence) - Analysis of NBA ‘Player Offensive Efficiency (POE)’ using AI</strong><br>
+        Created own features for analyzing the player offensive efficiency based on the NBA statistics and then performed rank overlap of ranking from new features with ESPN rankings.<br>
+        Relevant Skills : Machine Learning, Artificial Intelligence, Data Visualization<br>
+        Learn more at/ view code: <a href="https://github.com/shwetamadhale/nba_poe_analysis">Repo</a>
+      </li>
+      <li>
+        <strong>Recognition of Handwritten Math Equation</strong><br>
+        Generated new dataset from customized data collection website, used the images to train and test on a CNN LSTM architecture<br>
+        Relevant Skills : Web Development, Machine Learning<br>
+        Learn more at/ view code: <a href="https://github.com/shwetamadhale/fyp">Repo</a>
+      </li>
+      <li>
+        <strong>'FAQ and Help' Chatbot</strong><br>
+        Created a chatbot which was trained on pre-defined frequently asked questions for the Google Developer Students Club (GDSC) of SIES Graduate School of Technology.<br>
+        Relevant Skills : Web Development, Chatbot, Natural Language Processing
+      </li>
+      <li>
+        <strong>Intelligent Traffic Control System</strong><br>
+        Devised a system which predicted traffic light duration based on real-time image processing and computer vision techniques<br>
+        Relevant Skills : MATLAB, Image Processing, Computer Vision<br>
+        Learn more at/ view code: <a href="https://github.com/shwetamadhale/CV_intelligent_traffic_control">Repo</a>
+      </li>
+    </ul>
+  {% endcapture %}
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+  {{ academic_projects | markdownify }}
+
+  <h2>🪛 Personal Projects</h2>
+  {% capture personal_projects %}
+    <ul>
+      <li>
+        <strong>Cloud-Based Personal Finance Manager with AWS and Jenkins CI/CD</strong><br>
+        Created a personal finance manager with AWS and automated deployment with Jenkins CI/CD, used Flask for web application development<br>
+        Relevant Skills : AWS, CI/CD, Flask<br>
+        Learn more/View Code:
+      </li>
+      <li>
+        <strong>LangChain Chatbot WebApp on custom data with LLM</strong><br>
+        Created a webapp that accepts and processes uploaded PDFs, uses processed data as custom input for HuggingFace LLM along with embeddings, and tests knowledge of the bot on extracted custom data.<br>
+        Relevant Skills : Web Development, NLP<br>
+        Learn more/View Code: <a href="https://github.com/shwetamadhale/pdf_chatbot_llm">Repo</a>
+      </li>
+      <li>
+        <strong>Sentiment analyzer chatbot for music recommendation</strong><br>
+        Created a chatbot that determines mood from conversation and recommends the most relevant song.<br>
+        Relevant Skills : Web Development, NLP, Machine Learning<br>
+        Learn more/View Code: <a href="https://github.com/shwetamadhale/SentimentAnalysisWMusicRecChatBot">Repo</a>
+      </li>
+      <li>
+        <strong>Archive - Notes Manager</strong><br>
+        Developed a mobile application supported by Firebase for user authentication and storage.<br>
+        Relevant Skills : Android Development, Firebase<br>
+        Learn more/View Code: <a href="https://github.com/shwetamadhale/ArchiveApp">Repo</a>
+      </li>
+    </ul>
+  {% endcapture %}
+
+  {{ personal_projects | markdownify }}
+
+  <h2>🤯 Some more projects</h2>
+  <ul>
+    <li>Performing GeoAnalysis for Accommodation Recommendation - <a href="https://github.com/shwetamadhale/AccomodationRecWGeoAnalysis">Code</a></li>
+    <li>Flappy Bird Game with Vanilla Javascript - <a href="https://github.com/shwetamadhale/FlappyBirdGame">Code</a></li>
+    <li>ToDo List WebApp - <a href="https://github.com/shwetamadhale/ToDoList">Code</a></li>
+    <li>WebApp for Diabetes Detection with Machine Learning - <a href="https://github.com/shwetamadhale/WebAppDiabetesDetectionML">Code</a></li>
+    <li>Movie Recommendation - <a href="https://github.com/shwetamadhale/MovieRecommendation">Code</a></li>
+    <li>COVID 19 Prediction - <a href="https://github.com/shwetamadhale/COVID19Prediction">Code</a></li>
+    <li>WebApp for GRE MCQ/Flashcards - <a href="https://github.com/shwetamadhale/MCQforGRE">Code</a></li>
+    <li>GUI for a General Store Database - <a href="https://github.com/shwetamadhale/GUItoDatabase-generalstore-">Code</a></li>
+    <li>Resume Builder Web Application - <a href="https://github.com/shwetamadhale/ResumeBuilder">Code</a></li>
+    <li>React Application for Recipes - <a href="https://github.com/shwetamadhale/RecipeApp">Code</a></li>
+    <li>Sentiment Analysis on Youtube Comments - <a href="https://github.com/shwetamadhale/SentimentAnalysisYTCmmts">Code</a></li>
+  </ul>
+</div>
 

@@ -1,5 +1,11 @@
 # main links links
 main:
+  - title: "Resume"
+    url: /files/Resume.pdf
+
+  - title: "Projects"
+    url: /projects/
+
   - title: "Papers"
     url: /publications/
 
@@ -15,8 +21,7 @@ main:
   # - title: "Blog Posts"
   #   url: /year-archive/
     
-  - title: "Resume"
-    url: /files/Resume.pdf
+
     
   # - title: "Guide"
   #   url: /markdown/
