@@ -3,6 +3,9 @@ main:
   - title: "Resume"
     url: /files/Resume_0909.pdf
 
+  - title: "Relevant Experience"
+    url: /experience/
+
   - title: "Projects"
     url: /projects/
 
@@ -15,12 +18,7 @@ main:
   - title: "Papers"
     url: /papers/
 
-    
 
-     
-    
-  # - title: "Portfolio"
-  #   url: /portfolio/
         
   # - title: "Blog Posts"
   #   url: /year-archive/
