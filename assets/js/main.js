@@ -83,7 +83,12 @@ function initScrollAnimations() {
                             entry.target.classList.add('animate-visible');
                         }, index * 200); // Staggered delay for timeline items
                     } else {
-                        entry.target.classList.add('animate-visible');
+                        // For other elements, add a small delay based on their position
+                        const rect = entry.target.getBoundingClientRect();
+                        const delay = Math.max(0, rect.top / 10);
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-visible');
+                        }, delay);
                     }
                     observer.unobserve(entry.target);
                 }
@@ -91,12 +96,7 @@ function initScrollAnimations() {
         }, { threshold: 0.15 });
         
         animatedElements.forEach(el => {
-            // Make sure timeline items are processed first
-            if (el.classList.contains('timeline-item')) {
-                setTimeout(() => observer.observe(el), 100);
-            } else {
-                observer.observe(el);
-            }
+            observer.observe(el);
         });
     } else {
         // Fallback for browsers without IntersectionObserver
@@ -108,7 +108,10 @@ function initScrollAnimations() {
                 }, delay);
                 delay += 200;
             } else {
-                el.classList.add('animate-visible');
+                setTimeout(() => {
+                    el.classList.add('animate-visible');
+                }, delay);
+                delay += 100;
             }
         });
     }
@@ -164,6 +167,49 @@ function initAnimations() {
     });
 }
 
+// Debug function to check what's happening with animations
+function debugAnimations() {
+    console.log("=== ANIMATION DEBUG ===");
+    
+    // Check if elements have the right classes
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    console.log(`Found ${animatedElements.length} elements with animate-on-scroll class`);
+    
+    animatedElements.forEach((el, index) => {
+        console.log(`Element ${index + 1}:`, el);
+        console.log(`Has animate-visible: ${el.classList.contains('animate-visible')}`);
+        console.log(`Is timeline item: ${el.classList.contains('timeline-item')}`);
+    });
+    
+    // Check if IntersectionObserver is supported
+    console.log(`IntersectionObserver supported: ${'IntersectionObserver' in window}`);
+    
+    console.log("=== END DEBUG ===");
+}
+
+// Force animations for testing
+function forceAnimations() {
+    console.log("Forcing animations...");
+    
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    let delay = 0;
+    
+    animatedElements.forEach(el => {
+        if (el.classList.contains('timeline-item')) {
+            setTimeout(() => {
+                el.classList.add('animate-visible');
+                console.log("Animating timeline item:", el);
+            }, delay);
+            delay += 300;
+        } else {
+            setTimeout(() => {
+                el.classList.add('animate-visible');
+            }, delay);
+            delay += 100;
+        }
+    });
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
@@ -194,4 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize scroll animations
     initScrollAnimations();
+    
+    // Debug (remove after fixing)
+    setTimeout(debugAnimations, 2000);
+    
+    // Force animations if they don't work (remove after fixing)
+    setTimeout(forceAnimations, 3000);
 });
