@@ -68,7 +68,7 @@ class TypeMaster {
     }
 }
 
-// Simplified Scroll Animation Functionality
+// Enhanced Scroll Animation Functionality with Timeline Support
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
@@ -76,16 +76,41 @@ function initScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-visible');
+                    // Special handling for timeline items
+                    if (entry.target.classList.contains('timeline-item')) {
+                        const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-visible');
+                        }, index * 200); // Staggered delay for timeline items
+                    } else {
+                        entry.target.classList.add('animate-visible');
+                    }
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
         
-        animatedElements.forEach(el => observer.observe(el));
+        animatedElements.forEach(el => {
+            // Make sure timeline items are processed first
+            if (el.classList.contains('timeline-item')) {
+                setTimeout(() => observer.observe(el), 100);
+            } else {
+                observer.observe(el);
+            }
+        });
     } else {
         // Fallback for browsers without IntersectionObserver
-        animatedElements.forEach(el => el.classList.add('animate-visible'));
+        let delay = 0;
+        animatedElements.forEach(el => {
+            if (el.classList.contains('timeline-item')) {
+                setTimeout(() => {
+                    el.classList.add('animate-visible');
+                }, delay);
+                delay += 200;
+            } else {
+                el.classList.add('animate-visible');
+            }
+        });
     }
 }
 
