@@ -71,7 +71,7 @@
             margin: 0 auto;
         }
         
-        /* Profile header - more compact */
+        /* Profile header - full width */
         .profile-header {
             text-align: center;
             margin-bottom: 30px;
@@ -81,9 +81,7 @@
             box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
             position: relative;
             overflow: hidden;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
         }
         
         .profile-header::before {
@@ -130,7 +128,7 @@
             color: var(--neon-blue);
         }
         
-        /* Status message */
+        /* Status message - full width */
         .status-message {
             background-color: var(--darker-bg);
             padding: 12px;
@@ -140,9 +138,7 @@
             position: relative;
             --glow-color: var(--neon-pink);
             animation: glow-pulse 3s infinite;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
         }
         
         .status-message::before {
@@ -152,7 +148,7 @@
             font-size: 1.2rem;
         }
         
-        /* Marquee text - slower with better spacing */
+        /* Marquee text - full width */
         .marquee {
             white-space: nowrap;
             overflow: hidden;
@@ -161,22 +157,20 @@
             padding: 12px;
             background-color: rgba(157, 78, 221, 0.2);
             border: 1px solid var(--neon-purple);
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
         }
         
         .marquee-content {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 25s linear infinite; /* Slower animation */
+            animation: marquee 50s linear infinite; /* Slower animation */
             color: var(--neon-pink);
             font-weight: bold;
         }
         
         .marquee-item {
             display: inline-block;
-            padding: 0 40px; /* More spacing between items */
+            padding: 0 100px; /* More spacing between items */
         }
         
         @keyframes marquee {
@@ -302,7 +296,7 @@
             padding: 10px 15px;
             border-radius: 5px;
             font-size: 0.9rem;
-            border: 1px solid var(--neon-blue); /* Changed from border-left */
+            border: 1px solid var(--neon-blue);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -573,10 +567,6 @@
             .explore-block {
                 grid-row: 12 / 13;
             }
-            
-            .container {
-                max-width: 900px;
-            }
         }
         
         @media (max-width: 768px) {
@@ -632,7 +622,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Profile Header -->
+        <!-- Profile Header - now full width -->
         <div class="profile-header">
             <div class="profile-img">
                 <i class="fas fa-code"></i>
@@ -642,7 +632,7 @@
             <p>Code to Solve, Scale, and Simplify<span class="blinking-cursor">_</span></p>
         </div>
         
-        <!-- Status Message -->
+        <!-- Status Message - now full width -->
         <div class="status-message">
             Currently working on something awesome! Listening to: Daft Punk - Digital Love
         </div>
@@ -665,9 +655,13 @@
                 <i class="fas fa-paper-plane"></i>
                 <span>Contact</span>
             </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fas fa-paper-plane"></i>
+                <span>Resume</span>
+            </a>
         </div>
         
-        <!-- Marquee text -->
+        <!-- Marquee text - now full width -->
         <div class="marquee">
             <div class="marquee-content">
                 <span class="marquee-item">✨ Welcome to my digital space! ✨</span>
