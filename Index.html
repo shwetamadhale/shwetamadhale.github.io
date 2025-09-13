@@ -408,48 +408,53 @@
         .timeline {
             list-style-type: none;
             position: relative;
-            padding-left: 20px;
+            padding-left: 30px; /* Increased for better spacing */
+            margin: 0;
         }
-        
+
         .timeline::before {
             content: '';
             position: absolute;
-            left: 7px;
-            top: 5px;
-            height: calc(100% - 10px);
+            left: 15px; /* Centered with the circles */
+            top: 0;
+            height: 100%;
             width: 2px;
-            background: var(--neon-blue);
+            background: #00bfff; /* Fallback color */
+            background: var(--neon-blue, #00bfff);
         }
-        
+
         .timeline-item {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
-            padding-left: 10px;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -16px;
-            top: 7px;
-            width: 10px;
-            height: 10px;
+            left: -19px; /* Adjusted to center on the line */
+            top: 5px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: var(--neon-pink);
-            border: 2px solid var(--darker-bg);
+            background: #ff1493; /* Fallback color */
+            background: var(--neon-pink, #ff1493);
+            border: 2px solid #000; /* Fallback border */
+            border: 2px solid var(--darker-bg, #000);
             z-index: 2;
         }
-        
+
         .timeline-date {
             font-size: 0.85rem;
-            color: var(--neon-pink);
+            color: #ff1493; /* Fallback color */
+            color: var(--neon-pink, #ff1493);
             font-weight: bold;
             margin-bottom: 5px;
         }
-        
+
         .timeline-content {
             font-size: 0.9rem;
-            color: var(--neon-green);
+            color: #00ff00; /* Fallback color */
+            color: var(--neon-green, #00ff00);
         }
         
         .achievement-list {
