@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shweta's Space</title>
+    <style>
+        /* MySpace-inspired styles with modern twist */
+        :root {
+            --neon-pink: #ff2c95;
+            --neon-blue: #00f3ff;
+            --neon-purple: #9d4edd;
+            --dark-bg: #0d0b12;
+            --darker-bg: #070509;
+            --text-color: #f1f1f1;
+            --accent-color: #ffcc00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(255, 44, 149, 0.1) 0%, transparent 20%);
+        }
+        
+        /* Glitch effect for headings */
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-blue); }
+            20% { text-shadow: -2px 2px 0 var(--neon-blue), 2px -2px 0 var(--neon-pink); }
+            40% { text-shadow: 2px -2px 0 var(--neon-pink), -2px 2px 0 var(--neon-blue); }
+            60% { text-shadow: -2px -2px 0 var(--neon-blue), 2px 2px 0 var(--neon-pink); }
+            80% { text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-blue); }
+            100% { text-shadow: -2px 2px 0 var(--neon-blue), 2px -2px 0 var(--neon-pink); }
+        }
+        
+        /* Blinking cursor animation */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Profile header */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid var(--neon-purple);
+            background-color: var(--darker-bg);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            filter: blur(20px);
+            opacity: 0.3;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .profile-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            animation: glitch 5s infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .profile-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+        
+        /* Status message */
+        .status-message {
+            background-color: var(--darker-bg);
+            padding: 10px;
+            border-left: 3px solid var(--neon-pink);
+            margin-bottom: 30px;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .status-message::before {
+            content: '♫';
+            margin-right: 10px;
+            color: var(--neon-pink);
+        }
+        
+        /* Content sections */
+        .section {
+            background-color: var(--darker-bg);
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid var(--neon-purple);
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            border-bottom: 2px solid var(--neon-purple);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Links */
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .link {
+            display: block;
+            padding: 12px;
+            background-color: rgba(0, 243, 255, 0.1);
+            color: var(--text-color);
+            text-decoration: none;
+            border: 1px solid var(--neon-blue);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .link:hover {
+            background-color: rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        /* About me */
+        .about-content {
+            line-height: 1.8;
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill {
+            padding: 10px;
+            background-color: rgba(255, 44, 149, 0.1);
+            border: 1px solid var(--neon-pink);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill:hover {
+            background-color: rgba(255, 44, 149, 0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Projects */
+        .project {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--neon-purple);
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .project-desc {
+            margin-bottom: 10px;
+        }
+        
+        .project-tech {
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+        
+        /* Visitor counter */
+        .visitor-counter {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            background-color: var(--darker-bg);
+            border: 1px solid var(--neon-purple);
+            font-size: 0.9rem;
+        }
+        
+        /* Blinking cursor */
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+            color: var(--neon-blue);
+        }
+        
+        /* Marquee text (MySpace nostalgia) */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(157, 78, 221, 0.2);
+            border: 1px solid var(--neon-purple);
+        }
+        
+        .marquee p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+            color: var(--neon-pink);
+        }
+        
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .profile-title {
+                font-size: 2rem;
+            }
+            
+            .links {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        
+        /* MySpace-style cursor */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%2300f3ff" /></svg>') 10 10, auto;
+        }
+        
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23ff2c95" /></svg>') 10 10, pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-img">
+                <i class="fas fa-code"></i>
+            </div>
+            <h1 class="profile-title">Shweta's Space</h1>
+            <p class="profile-tagline">Full-Stack Developer | Applied AI/ML</p>
+            <p>Code to Solve, Scale, and Simplify<span class="blinking-cursor">_</span></p>
+        </div>
+        
+        <!-- Status Message -->
+        <div class="status-message">
+            Currently working on something awesome! 🚀
+        </div>
+        
+        <!-- Marquee (MySpace nostalgia) -->
+        <div class="marquee">
+            <p>✨ Welcome to my digital space! Feel free to look around! ✨</p>
+        </div>
+        
+        <!-- About Me Section -->
+        <div class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I design and deploy smart, scalable software. Blending full stack engineering, cloud infrastructure, and applied artificial intelligence.</p>
+                <p>My work intends to bridge clean code and complex data, turning ideas into fast, functional, and future ready products.</p>
+            </div>
+        </div>
+        
+        <!-- Quick Links Section -->
+        <div class="section">
+            <h2 class="section-title">Navigate My Space</h2>
+            <div class="links">
+                <a href="about.html" class="link">About Me</a>
+                <a href="projects.html" class="link">Projects</a>
+                <a href="achievements.html" class="link">Highlights</a>
+                <a href="contact.html" class="link">Connect</a>
+                <a href="https://github.com/shwetamadhale" class="link">GitHub</a>
+                <a href="https://linkedin.com/in/shwetamadhale" class="link">LinkedIn</a>
+                <a href="https://drive.google.com/file/d/1NtCfOaviAaNGtB48LQfm5TOhOt1Fbarc/view" class="link">Resume</a>
+            </div>
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="section">
+            <h2 class="section-title">Tech I Work With</h2>
+            <div class="skills-grid">
+                <div class="skill">Java</div>
+                <div class="skill">Python</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">React</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">AWS</div>
+                <div class="skill">MongoDB</div>
+                <div class="skill">Machine Learning</div>
+                <div class="skill">Docker</div>
+                <div class="skill">Git</div>
+            </div>
+        </div>
+        
+        <!-- Featured Projects -->
+        <div class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="project">
+                <h3 class="project-title">GrocerIQ - Smart Grocery Planner</h3>
+                <p class="project-tech">React, Express, Node.js, MongoDB, JavaScript, Clerk, LLM</p>
+                <p class="project-desc">A web app that helps users plan meals and manage groceries based on dietary preferences, budget, and cooking habits.</p>
+            </div>
+            
+            <div class="project">
+                <h3 class="project-title">Cloud Microservices Migration</h3>
+                <p class="project-tech">AWS, Node.js, CI/CD, MySQL, Docker</p>
+                <p class="project-desc">Transformation of a legacy app into modular, cloud native microservices using AWS.</p>
+            </div>
+            
+            <div class="project">
+                <h3 class="project-title">LLM Based PDF Query Assistant</h3>
+                <p class="project-tech">Python, StreamLit, NLP, HuggingFace, FAISS</p>
+                <p class="project-desc">A PDF-based chatbot that lets users ask questions about document content.</p>
+            </div>
+        </div>
+        
+        <!-- Visitor Counter -->
+        <div class="visitor-counter">
+            <p>Visitor Count: 12345 since 01.01.2024</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple typewriter effect for status message
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusMessage = document.querySelector('.status-message');
+            const messages = [
+                "Currently working on something awesome! 🚀",
+                "Coding with coffee ☕ and good music 🎵",
+                "Building the future, one line of code at a time",
+                "Available for freelance projects!",
+                "Exploring new tech stacks and frameworks"
+            ];
+            
+            let messageIndex = 0;
+            
+            setInterval(() => {
+                statusMessage.style.opacity = 0;
+                
+                setTimeout(() => {
+                    messageIndex = (messageIndex + 1) % messages.length;
+                    statusMessage.textContent = messages[messageIndex];
+                    statusMessage.style.opacity = 1;
+                }, 500);
+            }, 5000);
+            
+            // Simple visitor counter (for demo purposes)
+            const counter = document.querySelector('.visitor-counter p');
+            let count = parseInt(counter.textContent.match(/\d+/)[0]);
+            
+            setInterval(() => {
+                count++;
+                counter.textContent = `Visitor Count: ${count} since 01.01.2024`;
+            }, 60000); // Increment every minute for demo
+        });
+    </script>
+</body>
+</html>
