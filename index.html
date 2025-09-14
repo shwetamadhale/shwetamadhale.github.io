@@ -739,19 +739,19 @@
 </head>
 <body>
     <div class="container">
-        <!-- Profile Header - now full width -->
+        <!-- Profile Header -->
         <div class="profile-header">
             <div class="profile-img">
                 <i class="fas fa-code"></i>
             </div>
-            <h1 class="profile-title">Shweta's Space</h1>
+            <h1 class="profile-title">Shweta Madhale</h1>
             <p class="profile-tagline">Full-Stack Developer | Applied AI/ML</p>
-            <p>Code to Solve, Scale, and Simplify<span class="blinking-cursor">_</span></p>
+            <p>Coding to Solve, Scale, and Simplify<span class="blinking-cursor">__</span></p>
         </div>
         
-        <!-- Status Message - now full width -->
-        <div class="status-message">
-            Currently working on something awesome! Listening to: Daft Punk - Digital Love
+        <!-- Status Message -->
+        <div class="status-message" id="status-message">
+            <!-- This comment will be replaced by JavaScript -->
         </div>
         
         <!-- Navigation Links -->
@@ -998,7 +998,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Set a random visitor count for demo purposes
             const randomCount = Math.floor(Math.random() * 1000) + 1000;
-            document.getElementById('visitor-count').textContent = randomCount;
             
             // Add bounce animation to icons on hover
             const icons = document.querySelectorAll('.skill-tag i, .contact-icon i, .project-title i');
@@ -1029,15 +1028,22 @@
             ];
             
             let currentStatus = 0;
-            const statusElement = document.querySelector('.status-message');
+            const statusElement = document.getElementById('status-message');
+            
+            // Set initial message immediately
+            if (statusElement) {
+                statusElement.textContent = statusMessages[currentStatus];
+            }
             
             setInterval(() => {
                 currentStatus = (currentStatus + 1) % statusMessages.length;
-                statusElement.textContent = statusMessages[currentStatus];
-                statusElement.style.animation = 'none';
-                setTimeout(() => {
-                    statusElement.style.animation = 'glow-pulse 3s infinite';
-                }, 10);
+                if (statusElement) {
+                    statusElement.textContent = statusMessages[currentStatus];
+                    statusElement.style.animation = 'none';
+                    setTimeout(() => {
+                        statusElement.style.animation = 'glow-pulse 3s infinite';
+                    }, 10);
+                }
             }, 8000);
         });
     </script>
