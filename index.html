@@ -538,7 +538,7 @@
             font-size: 1.1rem;
         }
         
-        /* Spotify Player Styles */
+        Spotify Player Styles
         .spotify-player {
             width: 100%;
             text-align: center;
@@ -600,6 +600,60 @@
         .blinking-cursor {
             animation: blink 1s step-end infinite;
             color: var(--neon-blue);
+        }
+
+
+        /* Technical Papers Styles */
+        .papers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .paper-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid var(--neon-purple);
+        }
+
+        .paper-title {
+            font-size: 0.95rem;
+            color: var(--neon-blue);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .paper-title i {
+            color: var(--neon-pink);
+        }
+
+        .paper-conference {
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--neon-yellow);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border: 1px solid var(--neon-yellow);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .paper-link:hover {
+            background-color: rgba(255, 252, 0, 0.2);
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
         }
         
         /* Navigation links */
@@ -996,7 +1050,7 @@
                     </a>
                 </div>
             </div>
-            <!-- Spotify Block -->
+            <!-- Spotify Block
             <div class="block counter-block">
                 <div class="spotify-player">
                     <h3 class="spotify-title">
@@ -1020,6 +1074,52 @@
                         class="spotify-link">
                             <i class="fab fa-spotify"></i>
                             Open in Spotify
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Technical Papers Block -->
+            <div class="block counter-block">
+                <h2 class="block-title">Technical Papers</h2>
+                <div class="papers-list">
+                    <div class="paper-item">
+                        <div class="paper-title">
+                            <i class="fas fa-file-alt"></i>
+                            Machine Learning Approaches to Predictive Analytics
+                        </div>
+                        <div class="paper-conference">
+                            International Conference on AI Research, 2023
+                        </div>
+                        <a href="#" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Paper
+                        </a>
+                    </div>
+                    <div class="paper-item">
+                        <div class="paper-title">
+                            <i class="fas fa-file-alt"></i>
+                            Neural Network Optimization Techniques
+                        </div>
+                        <div class="paper-conference">
+                            Journal of Advanced Computing, 2022
+                        </div>
+                        <a href="#" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Paper
+                        </a>
+                    </div>
+                    <div class="paper-item">
+                        <div class="paper-title">
+                            <i class="fas fa-file-alt"></i>
+                            Cloud-Native Architecture Patterns
+                        </div>
+                        <div class="paper-conference">
+                            IEEE Software Conference, 2021
+                        </div>
+                        <a href="#" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Paper
                         </a>
                     </div>
                 </div>
