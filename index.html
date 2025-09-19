@@ -603,7 +603,16 @@
         }
 
 
-        /* Technical Papers Styles */
+        /* Technical Papers Block - Updated styling */
+        .papers-block {
+            grid-column: 5 / 9;
+            grid-row: 3 / 4;
+            border-color: var(--neon-purple);
+            --glow-color: var(--neon-purple);
+            padding: 18px;
+        }
+
+        /* Technical Papers Styles - Fixed */
         .papers-list {
             display: flex;
             flex-direction: column;
@@ -615,6 +624,12 @@
             padding: 15px;
             border-radius: 5px;
             border-left: 3px solid var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+
+        .paper-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 10px var(--neon-purple);
         }
 
         .paper-title {
