@@ -535,9 +535,9 @@
             background: var(--arcade-purple);
             color: white;
             border: none;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.55rem;
+            font-size: 0.65rem;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
             transition: all 0.3s ease;
@@ -549,7 +549,7 @@
             box-shadow: 0 3px 10px rgba(255, 42, 157, 0.4);
         }
         
-        /* Achievements List */
+        /* Achievements List - Fixed */
         .achievement-list {
             list-style-type: none;
             display: flex;
@@ -608,6 +608,32 @@
             font-weight: bold;
             color: var(--arcade-green);
             font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+        
+        /* Fixed Achievement Actions */
+        .achievement-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .verify-achievement-btn {
+            background: var(--arcade-purple);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .verify-achievement-btn:hover {
+            background: var(--arcade-pink);
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(255, 42, 157, 0.4);
         }
         
         /* Working On Items */
@@ -1350,7 +1376,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Achievements -->
+                            <!-- Achievements - Fixed -->
                             <div class="mosaic-section">
                                 <h2 class="section-title">Achievements</h2>
                                 <ul class="achievement-list">
