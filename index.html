@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shweta's Arcade Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👾</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👾</text></svg>">
+    
     <style>
         /* Import Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -45,6 +50,223 @@
             image-rendering: pixelated;
         }
         
+        /* Pacman Intro Styling */
+        #pacman-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+        
+        .maze-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .maze {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            border: 2px solid var(--arcade-blue);
+            overflow: hidden;
+        }
+        
+        .maze-path {
+            position: absolute;
+            background-color: #000;
+            border: 2px dotted rgba(255, 255, 255, 0.2);
+        }
+        
+        .pacman {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--arcade-yellow);
+            border-radius: 50%;
+            z-index: 10;
+            animation: pacmanMove 6s linear forwards, pacmanEat 0.3s infinite alternate;
+        }
+        
+        .ghost {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50% 50% 0 0;
+            z-index: 5;
+        }
+        
+        .ghost::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: inherit;
+            clip-path: polygon(0 0, 20% 100%, 40% 0, 60% 100%, 80% 0, 100% 100%);
+        }
+        
+        .ghost.red {
+            background-color: var(--arcade-red);
+            animation: ghostMove 4s ease-in-out infinite;
+        }
+        
+        .ghost.pink {
+            background-color: var(--arcade-pink);
+            animation: ghostMove 4.5s ease-in-out infinite 0.5s;
+        }
+        
+        .ghost.blue {
+            background-color: var(--arcade-blue);
+            animation: ghostMove 3.5s ease-in-out infinite 1s;
+        }
+        
+        .ghost.orange {
+            background-color: var(--arcade-orange);
+            animation: ghostMove 4.2s ease-in-out infinite 0.2s;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--arcade-white);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        .power-pellet {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--arcade-yellow);
+            border-radius: 50%;
+            z-index: 2;
+            animation: powerPellet 1s infinite alternate;
+        }
+        
+        .intro-title {
+            font-size: 3rem;
+            color: var(--arcade-yellow);
+            text-shadow: 0 0 10px var(--arcade-yellow);
+            margin-bottom: 20px;
+            text-align: center;
+            animation: titleGlow 2s infinite alternate;
+        }
+        
+        .intro-subtitle {
+            font-size: 1.2rem;
+            color: var(--arcade-white);
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 2s;
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #333;
+            border: 2px solid var(--arcade-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--arcade-yellow), var(--arcade-green));
+            transition: width 0.5s ease;
+        }
+        
+        .loading-text {
+            font-size: 0.8rem;
+            color: var(--arcade-gray);
+            text-align: center;
+        }
+        
+        .begin-container {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards 4s;
+        }
+        
+        .begin-btn {
+            background: linear-gradient(to bottom, var(--arcade-green) 0%, #00cc66 100%);
+            color: var(--arcade-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 0 #009944, 0 0 15px rgba(0, 255, 136, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .begin-btn:hover {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #009944, 0 0 25px rgba(0, 255, 136, 0.8);
+            animation: buttonGlow 0.6s ease-in-out;
+        }
+        
+        .begin-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, var(--arcade-cyan), transparent, var(--arcade-pink), transparent);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .begin-btn:hover::before {
+            opacity: 1;
+            animation: neonSpin 1s linear infinite;
+        }
+        
+        .skip-intro {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--arcade-white);
+            border: 1px solid var(--arcade-blue);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .skip-intro:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
         /* Main Container */
         .arcade-container {
             width: 100%;
@@ -54,6 +276,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
         }
         
         /* Screen Area */
@@ -284,10 +509,12 @@
             image-rendering: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            color: var(--arcade-white);
         }
         
         .about-text.typing {
-            opacity: 0;
+            opacity: 1;
+            color: var(--arcade-white);
         }
         
         /* Mosaic Layout Container */
@@ -915,121 +1142,239 @@
         
         /* Footer */
         .arcade-footer {
-            background: linear-gradient(to bottom, #333344 0%, #222233 100%);
-            padding: 20px;
             text-align: center;
-            border-top: 5px solid #444455;
-            margin-top: auto;
+            padding: 20px;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 3px solid var(--arcade-blue);
             position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--arcade-gray);
+            margin-bottom: 10px;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 15px 0;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         
         .social-link {
-            color: var(--arcade-blue);
-            font-size: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--arcade-white);
             text-decoration: none;
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
         
         .social-link::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(0, 168, 255, 0.3), transparent);
-            transition: all 0.4s ease;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
         
         .social-link:hover::before {
-            width: 60px;
-            height: 60px;
+            left: 100%;
         }
         
         .social-link:hover {
-            color: var(--arcade-pink);
-            transform: translateY(-8px) scale(1.3) rotateY(15deg);
-            animation: socialBounce 0.6s ease-in-out;
+            transform: scale(1.2) rotateY(180deg);
+            box-shadow: 0 0 15px var(--arcade-blue);
+            background: var(--arcade-blue);
+        }
+        
+        .social-icon {
+            font-size: 1.2rem;
+            z-index: 2;
         }
         
         .copyright {
-            margin-top: 15px;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--arcade-gray);
-            font-family: 'Press Start 2P', cursive;
-            animation: textGlow 3s ease-in-out infinite alternate;
         }
         
-        /* Enhanced Animations */
-        .blinking-cursor {
-            animation: blink 1s step-end infinite;
-            color: var(--arcade-blue);
+        /* Pacman Game Elements for Main Page */
+        .pacman-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
         
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .floating-pacman {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--arcade-yellow);
+            border-radius: 50%;
+            animation: floatPacman 15s linear infinite;
+            opacity: 0.6;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .floating-ghost {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50% 50% 0 0;
+            animation: floatGhost 20s linear infinite;
+            opacity: 0.5;
         }
         
-        @keyframes profilePulse {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(255, 42, 157, 0.4);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(255, 42, 157, 0.8), 0 0 60px rgba(0, 168, 255, 0.4);
-            }
+        .floating-ghost::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: inherit;
+            clip-path: polygon(0 0, 20% 100%, 40% 0, 60% 100%, 80% 0, 100% 100%);
         }
         
-        @keyframes titleGlitch {
-            0%, 98% { 
-                text-shadow: 3px 3px 0 var(--arcade-purple);
-                transform: translateX(0);
-            }
-            1% { 
-                text-shadow: -3px -3px 0 var(--arcade-red), 3px 3px 0 var(--arcade-blue);
-                transform: translateX(-2px);
-            }
-            2% { 
-                text-shadow: 3px -3px 0 var(--arcade-green), -3px 3px 0 var(--arcade-yellow);
-                transform: translateX(2px);
-            }
+        .floating-ghost.red {
+            background-color: var(--arcade-red);
         }
         
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
+        .floating-ghost.pink {
+            background-color: var(--arcade-pink);
         }
         
-        @keyframes colorShift {
-            0%, 100% { color: var(--arcade-green); }
-            25% { color: var(--arcade-blue); }
-            50% { color: var(--arcade-pink); }
-            75% { color: var(--arcade-yellow); }
+        .floating-ghost.blue {
+            background-color: var(--arcade-blue);
+        }
+        
+        .floating-ghost.orange {
+            background-color: var(--arcade-orange);
+        }
+        
+        .pixel-border {
+            position: absolute;
+            background-color: var(--arcade-yellow);
+            opacity: 0.7;
+        }
+        
+        .pixel-border.top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+        
+        .pixel-border.bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+        
+        .pixel-border.left {
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+        }
+        
+        .pixel-border.right {
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+        }
+        
+        /* Animations */
+        @keyframes pacmanMove {
+            0% { top: 10px; left: 10px; }
+            25% { top: 10px; left: 560px; }
+            50% { top: 200px; left: 560px; }
+            75% { top: 200px; left: 10px; }
+            100% { top: 300px; left: 300px; }
+        }
+        
+        @keyframes pacmanEat {
+            0% { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
+            100% { clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%); }
+        }
+        
+        @keyframes ghostMove {
+            0% { top: 50px; left: 100px; }
+            25% { top: 50px; left: 500px; }
+            50% { top: 200px; left: 500px; }
+            75% { top: 200px; left: 100px; }
+            100% { top: 50px; left: 100px; }
+        }
+        
+        @keyframes powerPellet {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0.7; }
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px var(--arcade-yellow); }
+            100% { text-shadow: 0 0 20px var(--arcade-yellow), 0 0 30px var(--arcade-yellow); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         
         @keyframes headerGlow {
             0% { box-shadow: 0 0 15px rgba(0, 168, 255, 0.3); }
-            100% { box-shadow: 0 0 30px rgba(0, 168, 255, 0.6), 0 0 40px rgba(255, 42, 157, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(0, 168, 255, 0.7); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes profilePulse {
+            0% { box-shadow: 0 0 20px rgba(255, 42, 157, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 42, 157, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 42, 157, 0.4); }
+        }
+        
+        @keyframes titleGlitch {
+            0% { transform: translate(0); }
+            95% { transform: translate(0); }
+            96% { transform: translate(2px, -2px); }
+            97% { transform: translate(-2px, 2px); }
+            98% { transform: translate(2px, -2px); }
+            99% { transform: translate(-2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        
+        @keyframes colorShift {
+            0% { color: var(--arcade-green); }
+            50% { color: var(--arcade-cyan); }
+            100% { color: var(--arcade-green); }
         }
         
         @keyframes buttonBounce {
-            0%, 100% { transform: translateY(3px) scale(1.1); }
-            50% { transform: translateY(-2px) scale(1.15); }
+            0% { transform: translateY(3px) scale(1.1); }
+            50% { transform: translateY(0) scale(1.15); }
+            100% { transform: translateY(3px) scale(1.1); }
         }
         
         @keyframes neonSpin {
@@ -1038,18 +1383,9 @@
         }
         
         @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
+            0% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
-        }
-        
-        @keyframes iconBob {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(5deg); }
-        }
-        
-        @keyframes certFloat {
-            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-            50% { transform: translateY(-5px) rotateZ(10deg); }
+            100% { transform: translateY(0); }
         }
         
         @keyframes titleUnderline {
@@ -1058,91 +1394,65 @@
         }
         
         @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes textFadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
         }
         
         @keyframes sectionPulse {
-            0%, 100% { transform: translateY(-12px) scale(1.05) rotateY(5deg); }
-            50% { transform: translateY(-15px) scale(1.08) rotateY(8deg); }
+            0% { transform: translateY(-12px) scale(1.05) rotateY(5deg); }
+            50% { transform: translateY(-12px) scale(1.08) rotateY(5deg); }
+            100% { transform: translateY(-12px) scale(1.05) rotateY(5deg); }
+        }
+        
+        @keyframes iconBob {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
         }
         
         @keyframes buttonGlow {
-            0%, 100% { box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4); }
+            0% { box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4); }
             50% { box-shadow: 0 10px 30px rgba(0, 255, 136, 0.8); }
+            100% { box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4); }
         }
         
-        @keyframes socialBounce {
-            0%, 100% { transform: translateY(-8px) scale(1.3) rotateY(15deg); }
-            50% { transform: translateY(-12px) scale(1.4) rotateY(20deg); }
-        }
-        
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(192, 192, 192, 0.3); }
-            100% { text-shadow: 0 0 15px rgba(192, 192, 192, 0.8), 0 0 25px rgba(0, 168, 255, 0.3); }
+        @keyframes certFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
         }
         
         @keyframes scanlineFlicker {
-            0%, 98% { opacity: 1; }
-            99%, 100% { opacity: 0.8; }
+            0% { opacity: 0.8; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.8; }
         }
         
-        /* Decorative Elements */
-        .pixel-decoration {
-            position: absolute;
-            z-index: 1;
-            image-rendering: pixelated;
-            opacity: 0.6;
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
         }
         
-        .pixel-1 {
-            top: 100px;
-            right: 50px;
-            width: 25px;
-            height: 25px;
-            background: var(--arcade-pink);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation: float 4s ease-in-out infinite, colorCycle 6s linear infinite;
+        @keyframes floatPacman {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(200px, 0) rotate(180deg); }
+            75% { transform: translate(100px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
         
-        .pixel-2 {
-            bottom: 200px;
-            left: 30px;
-            width: 30px;
-            height: 30px;
-            background: var(--arcade-green);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation: float 5s ease-in-out infinite 1s, colorCycle 8s linear infinite 2s;
-        }
-        
-        @keyframes colorCycle {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+        @keyframes floatGhost {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-100px, 50px); }
+            50% { transform: translate(-200px, 0); }
+            75% { transform: translate(-100px, -50px); }
+            100% { transform: translate(0, 0); }
         }
         
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            .arcade-container {
-                border-width: 10px;
-            }
-            
-            .arcade-screen {
-                margin: 15px;
-            }
-            
+        @media (max-width: 1200px) {
             .mosaic-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .last-row {
@@ -1151,578 +1461,530 @@
         }
         
         @media (max-width: 768px) {
-            .arcade-container {
-                border-width: 8px;
+            .mosaic-container {
+                grid-template-columns: 1fr;
             }
             
-            .arcade-screen {
-                margin: 10px;
+            .arcade-nav {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .screen-content {
-                padding: 20px;
+            .arcade-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 0.5rem;
             }
             
             .profile-title {
                 font-size: 1.5rem;
             }
             
-            .arcade-nav {
-                gap: 10px;
+            .section-title {
+                font-size: 1.2rem;
             }
             
-            .arcade-btn {
-                width: 85px;
-                height: 85px;
-                font-size: 0.5rem;
-                padding: 5px;
+            .maze-container {
+                width: 90%;
+                height: 300px;
             }
             
-            .mosaic-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .last-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .pixel-1, .pixel-2 {
+            .floating-pacman, .floating-ghost {
                 display: none;
-            }
-            
-            .achievement-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
             }
         }
         
         @media (max-width: 480px) {
-            .arcade-container {
-                border-width: 5px;
-            }
-            
-            .arcade-screen {
-                margin: 5px;
-            }
-            
             .screen-content {
                 padding: 15px;
             }
             
-            .arcade-btn {
-                width: 75px;
-                height: 75px;
-                font-size: 0.45rem;
+            .mosaic-section {
+                padding: 15px;
             }
             
             .profile-title {
                 font-size: 1.2rem;
             }
             
-            .section-title {
-                font-size: 1.2rem;
+            .intro-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="arcade-container">
+    <!-- Pacman Intro -->
+    <div id="pacman-intro">
+        <div class="maze-container">
+            <div class="maze">
+                <!-- Maze paths -->
+                <div class="maze-path" style="top: 0; left: 0; width: 600px; height: 50px;"></div>
+                <div class="maze-path" style="top: 50px; left: 0; width: 100px; height: 100px;"></div>
+                <div class="maze-path" style="top: 50px; left: 500px; width: 100px; height: 100px;"></div>
+                <div class="maze-path" style="top: 150px; left: 0; width: 300px; height: 50px;"></div>
+                <div class="maze-path" style="top: 150px; left: 300px; width: 300px; height: 50px;"></div>
+                <div class="maze-path" style="top: 200px; left: 0; width: 100px; height: 100px;"></div>
+                <div class="maze-path" style="top: 200px; left: 500px; width: 100px; height: 100px;"></div>
+                <div class="maze-path" style="top: 300px; left: 0; width: 600px; height: 50px;"></div>
+                
+                <!-- Dots -->
+                <div class="dot" style="top: 25px; left: 150px;"></div>
+                <div class="dot" style="top: 25px; left: 300px;"></div>
+                <div class="dot" style="top: 25px; left: 450px;"></div>
+                <div class="dot" style="top: 75px; left: 75px;"></div>
+                <div class="dot" style="top: 75px; left: 525px;"></div>
+                <div class="dot" style="top: 125px; left: 150px;"></div>
+                <div class="dot" style="top: 125px; left: 450px;"></div>
+                <div class="dot" style="top: 175px; left: 75px;"></div>
+                <div class="dot" style="top: 175px; left: 525px;"></div>
+                <div class="dot" style="top: 225px; left: 150px;"></div>
+                <div class="dot" style="top: 225px; left: 450px;"></div>
+                <div class="dot" style="top: 275px; left: 75px;"></div>
+                <div class="dot" style="top: 275px; left: 525px;"></div>
+                <div class="dot" style="top: 325px; left: 150px;"></div>
+                <div class="dot" style="top: 325px; left: 300px;"></div>
+                <div class="dot" style="top: 325px; left: 450px;"></div>
+                
+                <!-- Power pellets -->
+                <div class="power-pellet" style="top: 25px; left: 25px;"></div>
+                <div class="power-pellet" style="top: 25px; left: 575px;"></div>
+                <div class="power-pellet" style="top: 325px; left: 25px;"></div>
+                <div class="power-pellet" style="top: 325px; left: 575px;"></div>
+                
+                <!-- Pacman -->
+                <div class="pacman"></div>
+                
+                <!-- Ghosts -->
+                <div class="ghost red" style="top: 50px; left: 100px;"></div>
+                <div class="ghost pink" style="top: 50px; left: 200px;"></div>
+                <div class="ghost blue" style="top: 50px; left: 400px;"></div>
+                <div class="ghost orange" style="top: 50px; left: 500px;"></div>
+            </div>
+        </div>
+        
+        <h1 class="intro-title">SHWETA'S ARCADE</h1>
+        <p class="intro-subtitle">Loading Portfolio...</p>
+        
+        <div class="loading-bar">
+            <div class="loading-progress" id="loading-progress"></div>
+        </div>
+        <p class="loading-text" id="loading-text">Initializing System...</p>
+        
+        <div class="begin-container">
+            <button class="begin-btn" id="begin-btn">
+                <i class="fas fa-play"></i> PRESS TO BEGIN
+            </button>
+        </div>
+        
+        <button class="skip-intro" id="skip-intro">SKIP INTRO</button>
+    </div>
+    
+    <!-- Main Arcade Container -->
+    <div class="arcade-container" id="main-container">
+        <!-- Pacman Game Elements -->
+        <div class="pacman-elements">
+            <div class="floating-pacman" style="top: 10%; left: 5%;"></div>
+            <div class="floating-pacman" style="top: 30%; left: 80%;"></div>
+            <div class="floating-pacman" style="top: 70%; left: 15%;"></div>
+            <div class="floating-ghost red" style="top: 20%; left: 60%;"></div>
+            <div class="floating-ghost pink" style="top: 50%; left: 10%;"></div>
+            <div class="floating-ghost blue" style="top: 80%; left: 70%;"></div>
+            <div class="floating-ghost orange" style="top: 40%; left: 90%;"></div>
+            <div class="pixel-border top"></div>
+            <div class="pixel-border bottom"></div>
+            <div class="pixel-border left"></div>
+            <div class="pixel-border right"></div>
+        </div>
+        
+        <!-- Arcade Screen -->
         <div class="arcade-screen">
             <div class="scanlines"></div>
-            <div class="screen-content">
-                <!-- Pixel Decorations -->
-                <div class="pixel-decoration pixel-1"></div>
-                <div class="pixel-decoration pixel-2"></div>
-                
-                <!-- Main Content Area -->
-                <div class="main-content">
-                    <!-- Header -->
-                    <div class="arcade-header">
-                        <div class="profile-img">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <h1 class="profile-title">Shweta's Arcade</h1>
-                        <p class="profile-tagline">Full-Stack Developer | AI/ML Specialist</p>
-                        <p>Player 1 - Ready! <span class="blinking-cursor">_</span></p>
-                    </div>
-                    
-                    <!-- Navigation -->
-                    <div class="arcade-nav">
-                        <a href="about.html" class="arcade-btn">
-                            <i class="fas fa-user btn-icon"></i>
-                            <span>About</span>
-                        </a>
-                        <a href="projects.html" class="arcade-btn">
-                            <i class="fas fa-code btn-icon"></i>
-                            <span>Projects</span>
-                        </a>
-                        <a href="achievements.html" class="arcade-btn">
-                            <i class="fas fa-trophy btn-icon"></i>
-                            <span>Achievements</span>
-                        </a>
-                        <a href="contact.html" class="arcade-btn">
-                            <i class="fas fa-envelope btn-icon"></i>
-                            <span>Contact</span>
-                        </a>
-                        <a href="resume.html" class="arcade-btn">
-                            <i class="fas fa-file-pdf btn-icon"></i>
-                            <span>Resume</span>
-                        </a>
-                    </div>
-                    
-                    <!-- Content Sections -->
-                    <div class="content-sections">
-                        <!-- About Section - Full Width -->
-                        <div class="about-section">
-                            <h2 class="section-title">Player Profile</h2>
-                            <p class="about-text">
-                                Welcome to my arcade portfolio! I'm a Full-Stack Developer with a passion for creating 
-                                innovative solutions that blend technology and creativity. My journey in tech started 
-                                with curiosity and has evolved into a career focused on building intelligent, user-centric applications.
-                            </p>
-                            <p class="about-text">
-                                With expertise in both front-end and back-end development, I specialize in creating seamless 
-                                experiences that solve real-world problems. My interest in AI and machine learning has led me 
-                                to explore how these technologies can enhance user experiences and create more intelligent systems.
-                            </p>
-                            <p class="about-text">
-                                When I'm not coding, you can find me exploring new technologies, contributing to open-source 
-                                projects, or enjoying retro games for inspiration!
-                            </p>
-                        </div>
-                        
-                        <!-- Mosaic Layout for first 6 sections -->
-                        <div class="mosaic-container">
-                            <!-- Skills & Expertise -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Skills & Expertise</h2>
-                                <div class="skills-grid">
-                                    <div class="skill-item">Python</div>
-                                    <div class="skill-item">JavaScript</div>
-                                    <div class="skill-item">React</div>
-                                    <div class="skill-item">Node.js</div>
-                                    <div class="skill-item">MongoDB</div>
-                                    <div class="skill-item">Machine Learning</div>
-                                    <div class="skill-item">AI</div>
-                                    <div class="skill-item">Cloud Computing</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Education & Experience -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Education & Experience</h2>
-                                <div class="education-timeline">
-                                    <div class="timeline-item">
-                                        <div class="timeline-year">2021 - Present</div>
-                                        <div class="timeline-title">Senior Developer at TechInnovate</div>
-                                        <div class="timeline-desc">Leading development teams and implementing cutting-edge solutions</div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-year">2019 - 2021</div>
-                                        <div class="timeline-title">Full Stack Developer at StartupHub</div>
-                                        <div class="timeline-desc">Built scalable web applications and APIs</div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-year">2015 - 2019</div>
-                                        <div class="timeline-title">B.Tech in Computer Science</div>
-                                        <div class="timeline-desc">Graduated with honors, focused on AI and software engineering</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Featured Projects -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Featured Projects</h2>
-                                <div class="featured-projects">
-                                    <div class="featured-project">
-                                        <h3 class="project-title">AI-Powered Recommendation System</h3>
-                                        <p class="project-desc">A machine learning system that provides personalized recommendations based on user behavior.</p>
-                                        <div class="project-tech">
-                                            <span class="tech-pill">Python</span>
-                                            <span class="tech-pill">TensorFlow</span>
-                                            <span class="tech-pill">MongoDB</span>
-                                        </div>
-                                        <div class="project-actions">
-                                            <button class="view-code-btn">View Code</button>
-                                        </div>
-                                    </div>
-                                    <div class="featured-project">
-                                        <h3 class="project-title">Intelligent Chatbot Platform</h3>
-                                        <p class="project-desc">A conversational AI platform that helps businesses automate customer support.</p>
-                                        <div class="project-tech">
-                                            <span class="tech-pill">JavaScript</span>
-                                            <span class="tech-pill">Node.js</span>
-                                            <span class="tech-pill">NLP</span>
-                                        </div>
-                                        <div class="project-actions">
-                                            <button class="view-code-btn">View Code</button>
-                                        </div>
-                                    </div>
-                                    <div class="featured-project">
-                                        <h3 class="project-title">Real-Time Analytics Dashboard</h3>
-                                        <p class="project-desc">A dashboard that visualizes real-time data streams with interactive charts and graphs.</p>
-                                        <div class="project-tech">
-                                            <span class="tech-pill">React</span>
-                                            <span class="tech-pill">Socket.io</span>
-                                            <span class="tech-pill">PostgreSQL</span>
-                                        </div>
-                                        <div class="project-actions">
-                                            <button class="view-code-btn">View Code</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Achievements - Fixed -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Achievements</h2>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">
-                                        <div class="achievement-icon">
-                                            <i class="fas fa-medal"></i>
-                                        </div>
-                                        <div class="achievement-content">
-                                            <div class="achievement-title">Google Cloud Certified Developer</div>
-                                            <div class="achievement-actions">
-                                                <button class="verify-achievement-btn">Verify Badge</button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="achievement-item">
-                                        <div class="achievement-icon">
-                                            <i class="fas fa-trophy"></i>
-                                        </div>
-                                        <div class="achievement-content">
-                                            <div class="achievement-title">Open Source Contributor of the Year</div>
-                                            <div class="achievement-actions">
-                                                <button class="verify-achievement-btn">Verify Badge</button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Currently Working On -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Currently Working On</h2>
-                                <div class="working-on">
-                                    <div class="work-item">
-                                        <h3>AI Code Assistant</h3>
-                                        <p>Developing an intelligent code assistant that suggests improvements and detects bugs.</p>
-                                        <button class="feedback-btn">Give Feedback</button>
-                                    </div>
-                                    <div class="work-item">
-                                        <h3>Mobile App Development</h3>
-                                        <p>Building a cross-platform mobile application for task management with AI features.</p>
-                                        <button class="feedback-btn">Give Feedback</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Technical Papers -->
-                            <div class="mosaic-section">
-                                <h2 class="section-title">Technical Papers</h2>
-                                <div class="papers-list">
-                                    <div class="paper-item">
-                                        <h3>"Optimizing Neural Networks for Edge Devices"</h3>
-                                        <p>Published in IEEE Conference on AI, 2023</p>
-                                        <button class="read-paper">Read Paper</button>
-                                    </div>
-                                    <div class="paper-item">
-                                        <h3>"A Comparative Study of ML Algorithms"</h3>
-                                        <p>Published in Journal of Computer Science, 2022</p>
-                                        <button class="read-paper">Read Paper</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Last Row - 2 Columns -->
-                        <div class="last-row">
-                            <!-- Certifications -->
-                            <div class="mosaic-section certifications-section">
-                                <h2 class="section-title">Certifications</h2>
-                                <div class="certifications-grid">
-                                    <div class="certification-item">
-                                        <i class="fas fa-certificate certification-icon"></i>
-                                        <h3>AWS Solutions Architect</h3>
-                                        <p>Professional level certification for cloud architecture</p>
-                                        <button class="verify-btn">Verify Badge</button>
-                                    </div>
-                                    <div class="certification-item">
-                                        <i class="fas fa-brain certification-icon"></i>
-                                        <h3>TensorFlow Developer</h3>
-                                        <p>Certified for machine learning model development</p>
-                                        <button class="verify-btn">Verify Badge</button>
-                                    </div>
-                                    <div class="certification-item">
-                                        <i class="fas fa-code certification-icon"></i>
-                                        <h3>Full Stack Web Development</h3>
-                                        <p>Advanced certification in modern web technologies</p>
-                                        <button class="verify-btn">Verify Badge</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Explore & Resources -->
-                            <div class="mosaic-section explore-section">
-                                <h2 class="section-title">Explore & Resources</h2>
-                                <div class="resources">
-                                    <div class="resource-item">
-                                        <h3>My Blog</h3>
-                                        <p>Technical articles, tutorials, and thoughts on software development and AI.</p>
-                                        <button class="resource-btn">Visit Blog</button>
-                                    </div>
-                                    <div class="resource-item">
-                                        <h3>GitHub Profile</h3>
-                                        <p>Explore my open-source projects and contributions to the developer community.</p>
-                                        <button class="resource-btn">View GitHub</button>
-                                    </div>
-                                    <div class="resource-item">
-                                        <h3>Tech Talks</h3>
-                                        <p>Watch my presentations at conferences and meetups about AI and web development.</p>
-                                        <button class="resource-btn">Watch Videos</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
-            <!-- Footer -->
-            <div class="arcade-footer">
-                <div class="social-links">
-                    <a href="https://github.com/shwetamadhale" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
+            <!-- Screen Content -->
+            <div class="screen-content">
+                <!-- Header -->
+                <div class="arcade-header">
+                    <div class="profile-img">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h1 class="profile-title">Shweta's Arcade</h1>
+                    <p class="profile-tagline">Full Stack Developer & Game Enthusiast</p>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="arcade-nav">
+                    <a href="#" class="arcade-btn active">
+                        <i class="fas fa-home btn-icon"></i>
+                        HOME
                     </a>
-                    <a href="https://linkedin.com/in/shwetamadhale" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="#" class="arcade-btn">
+                        <i class="fas fa-code btn-icon"></i>
+                        PROJECTS
                     </a>
-                    <a href="https://twitter.com/shweta_dev" class="social-link" target="_blank">
-                        <i class="fab fa-twitter"></i>
+                    <a href="#" class="arcade-btn">
+                        <i class="fas fa-graduation-cap btn-icon"></i>
+                        EDUCATION
                     </a>
-                    <a href="mailto:shweta@example.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
+                    <a href="#" class="arcade-btn">
+                        <i class="fas fa-trophy btn-icon"></i>
+                        ACHIEVEMENTS
+                    </a>
+                    <a href="#" class="arcade-btn">
+                        <i class="fas fa-file-alt btn-icon"></i>
+                        PAPERS
+                    </a>
+                    <a href="#" class="arcade-btn">
+                        <i class="fas fa-envelope btn-icon"></i>
+                        CONTACT
                     </a>
                 </div>
                 
-                <div class="copyright">
-                    © 2023 Shweta's Arcade. All rights reserved. | Game Over - Continue?
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- About Section -->
+                    <div class="about-section">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="about-text" id="about-text">
+                            Full Stack Developer with a passion for creating engaging digital experiences. 
+                            I specialize in building responsive web applications with modern technologies. 
+                            When I'm not coding, you can find me exploring new game mechanics or contributing 
+                            to open-source projects. My goal is to merge the worlds of gaming and web development 
+                            to create truly immersive experiences.
+                        </p>
+                    </div>
+                    
+                    <!-- Mosaic Layout -->
+                    <div class="mosaic-container">
+                        <!-- Skills Section -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Skills</h2>
+                            <div class="skills-grid">
+                                <div class="skill-item">JavaScript</div>
+                                <div class="skill-item">React</div>
+                                <div class="skill-item">Node.js</div>
+                                <div class="skill-item">Python</div>
+                                <div class="skill-item">HTML/CSS</div>
+                                <div class="skill-item">MongoDB</div>
+                                <div class="skill-item">Git</div>
+                                <div class="skill-item">UI/UX Design</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education Section -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Education</h2>
+                            <div class="education-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2020 - 2024</div>
+                                    <div class="timeline-title">B.Tech in Computer Science</div>
+                                    <div class="timeline-desc">XYZ University, CGPA: 9.2/10</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2018 - 2020</div>
+                                    <div class="timeline-title">Higher Secondary</div>
+                                    <div class="timeline-desc">ABC School, Percentage: 92%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured Projects -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Featured Projects</h2>
+                            <div class="featured-projects">
+                                <div class="featured-project">
+                                    <div class="project-title">E-Commerce Platform</div>
+                                    <div class="project-desc">Full-stack e-commerce solution with React and Node.js</div>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">React</span>
+                                        <span class="tech-pill">Node.js</span>
+                                        <span class="tech-pill">MongoDB</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <button class="view-code-btn">View Code</button>
+                                    </div>
+                                </div>
+                                <div class="featured-project">
+                                    <div class="project-title">Task Management App</div>
+                                    <div class="project-desc">Productivity app with drag-and-drop functionality</div>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">Vue.js</span>
+                                        <span class="tech-pill">Firebase</span>
+                                        <span class="tech-pill">CSS3</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <button class="view-code-btn">View Code</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Achievements</h2>
+                            <ul class="achievement-list">
+                                <li class="achievement-item">
+                                    <i class="fas fa-trophy achievement-icon"></i>
+                                    <div class="achievement-content">
+                                        <div class="achievement-title">Hackathon Winner 2023</div>
+                                        <p>First place in National Web Development Hackathon</p>
+                                        <div class="achievement-actions">
+                                            <button class="verify-achievement-btn">Verify</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="achievement-item">
+                                    <i class="fas fa-medal achievement-icon"></i>
+                                    <div class="achievement-content">
+                                        <div class="achievement-title">Open Source Contributor</div>
+                                        <p>Regular contributor to major open source projects</p>
+                                        <div class="achievement-actions">
+                                            <button class="verify-achievement-btn">Verify</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Currently Working On -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Currently Working On</h2>
+                            <div class="working-on">
+                                <div class="work-item">
+                                    <h3>Game Development Framework</h3>
+                                    <p>Building a JavaScript framework for 2D browser games</p>
+                                    <button class="feedback-btn">Give Feedback</button>
+                                </div>
+                                <div class="work-item">
+                                    <h3>Portfolio Website</h3>
+                                    <p>Creating an interactive portfolio with arcade aesthetics</p>
+                                    <button class="feedback-btn">Give Feedback</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Papers & Publications -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Papers & Publications</h2>
+                            <div class="papers-list">
+                                <div class="paper-item">
+                                    <h3>The Future of Web Gaming</h3>
+                                    <p>Exploring the potential of WebAssembly in browser games</p>
+                                    <button class="read-paper">Read Paper</button>
+                                </div>
+                                <div class="paper-item">
+                                    <h3>Progressive Web Apps</h3>
+                                    <p>How PWAs are changing mobile user experience</p>
+                                    <button class="read-paper">Read Paper</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Last Row - Certifications & Explore -->
+                    <div class="last-row">
+                        <!-- Certifications -->
+                        <div class="mosaic-section certifications-section">
+                            <h2 class="section-title">Certifications</h2>
+                            <div class="certifications-grid">
+                                <div class="certification-item">
+                                    <i class="fas fa-code certification-icon"></i>
+                                    <h3>Full Stack Development</h3>
+                                    <p>Certified by XYZ Academy</p>
+                                    <button class="verify-btn">Verify</button>
+                                </div>
+                                <div class="certification-item">
+                                    <i class="fas fa-cloud certification-icon"></i>
+                                    <h3>AWS Cloud Practitioner</h3>
+                                    <p>Amazon Web Services Certification</p>
+                                    <button class="verify-btn">Verify</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Explore More -->
+                        <div class="mosaic-section explore-section">
+                            <h2 class="section-title">Explore More</h2>
+                            <div class="resources">
+                                <div class="resource-item">
+                                    <h3>GitHub Profile</h3>
+                                    <p>Check out my code repositories</p>
+                                    <button class="resource-btn">Visit</button>
+                                </div>
+                                <div class="resource-item">
+                                    <h3>LinkedIn</h3>
+                                    <p>Connect with me professionally</p>
+                                    <button class="resource-btn">Connect</button>
+                                </div>
+                                <div class="resource-item">
+                                    <h3>Blog</h3>
+                                    <p>Read my thoughts on tech</p>
+                                    <button class="resource-btn">Read</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="arcade-footer">
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-codepen social-icon"></i>
+                        </a>
+                    </div>
+                    <p class="footer-text">Ready to create something amazing together?</p>
+                    <p class="copyright">© 2023 Shweta's Arcade. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Enhanced Arcade functionality
+        // Pacman Intro Animation
         document.addEventListener('DOMContentLoaded', function() {
-            // Add blinking cursor effect to section titles
-            const sectionTitles = document.querySelectorAll('.section-title');
-            sectionTitles.forEach((title, index) => {
+            const pacmanIntro = document.getElementById('pacman-intro');
+            const mainContainer = document.getElementById('main-container');
+            const loadingProgress = document.getElementById('loading-progress');
+            const loadingText = document.getElementById('loading-text');
+            const skipIntroBtn = document.getElementById('skip-intro');
+            const beginBtn = document.getElementById('begin-btn');
+            const aboutText = document.getElementById('about-text');
+            
+            let progress = 0;
+            const loadingMessages = [
+                "Initializing System...",
+                "Loading Assets...",
+                "Rendering Graphics...",
+                "Starting Game Engine...",
+                "Almost Ready...",
+                "Welcome to Shweta's Arcade!"
+            ];
+            
+            // Simulate loading progress - balanced speed
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 12;
+                if (progress > 100) progress = 100;
+                
+                loadingProgress.style.width = `${progress}%`;
+                
+                // Update loading text based on progress
+                if (progress < 20) {
+                    loadingText.textContent = loadingMessages[0];
+                } else if (progress < 40) {
+                    loadingText.textContent = loadingMessages[1];
+                } else if (progress < 60) {
+                    loadingText.textContent = loadingMessages[2];
+                } else if (progress < 80) {
+                    loadingText.textContent = loadingMessages[3];
+                } else if (progress < 100) {
+                    loadingText.textContent = loadingMessages[4];
+                } else {
+                    loadingText.textContent = loadingMessages[5];
+                }
+                
+                // When loading is complete - balanced transition
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                }
+            }, 250); // Balanced interval
+            
+            // Begin button functionality
+            beginBtn.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
-                    title.innerHTML += '<span class="blinking-cursor">_</span>';
-                }, index * 200);
+                    this.style.transform = '';
+                    
+                    // Smooth transition to main content
+                    pacmanIntro.style.opacity = '0';
+                    pacmanIntro.style.transform = 'translateY(-20px)';
+                    
+                    setTimeout(() => {
+                        pacmanIntro.style.display = 'none';
+                        mainContainer.style.opacity = '1';
+                        mainContainer.style.transform = 'translateY(0)';
+                        
+                        // Typewriter effect for about text
+                        typeWriterEffect(aboutText);
+                    }, 1500); // Smooth transition time
+                }, 200);
             });
             
-            // Enhanced hover effects for mosaic sections
-            const mosaicSections = document.querySelectorAll('.mosaic-section');
-            mosaicSections.forEach(section => {
-                section.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-12px) scale(1.05) rotateY(5deg)';
-                    this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    
-                    // Add sound effect simulation
-                    this.style.boxShadow = '0 20px 40px rgba(0, 255, 136, 0.4)';
-                });
+            // Skip intro button
+            skipIntroBtn.addEventListener('click', function() {
+                clearInterval(loadingInterval);
+                pacmanIntro.style.opacity = '0';
+                pacmanIntro.style.transform = 'translateY(-20px)';
                 
-                section.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
-                    this.style.boxShadow = '';
-                });
-            });
-
-            // Enhanced interactive button effects
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1)';
-                    this.style.transition = 'all 0.3s ease';
-                });
-                
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-                
-                button.addEventListener('click', function(e) {
-                    // Create ripple effect
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
+                setTimeout(() => {
+                    pacmanIntro.style.display = 'none';
+                    mainContainer.style.opacity = '1';
+                    mainContainer.style.transform = 'translateY(0)';
                     
-                    ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255, 255, 255, 0.5);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s ease-out;
-                        pointer-events: none;
-                    `;
-                    
-                    this.style.position = 'relative';
-                    this.style.overflow = 'hidden';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => ripple.remove(), 600);
-                });
+                    // Typewriter effect for about text
+                    typeWriterEffect(aboutText);
+                }, 800);
             });
             
-            // Add floating particles effect
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'floating-particle';
-                particle.style.cssText = `
-                    position: fixed;
-                    width: 4px;
-                    height: 4px;
-                    background: ${['var(--arcade-blue)', 'var(--arcade-pink)', 'var(--arcade-green)', 'var(--arcade-yellow)'][Math.floor(Math.random() * 4)]};
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 1;
-                    opacity: 0.7;
-                    left: ${Math.random() * window.innerWidth}px;
-                    top: ${window.innerHeight + 10}px;
-                    animation: floatUp 8s linear infinite;
-                `;
-                
-                document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 8000);
-            }
-            
-            // Create particles periodically
-            setInterval(createParticle, 2000);
-            
-            // Add CSS for floating particles
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes floatUp {
-                    to {
-                        transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-                
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Add typewriter effect to about text with continuity
-            const aboutTexts = document.querySelectorAll('.about-text');
-            aboutTexts.forEach(text => text.classList.add('typing'));
-            
-            function typeAboutText(index) {
-                if (index >= aboutTexts.length) return;
-                
-                const text = aboutTexts[index];
-                const originalText = text.textContent;
-                text.textContent = '';
-                text.style.opacity = '1';
-                text.classList.remove('typing');
+            // Fixed Typewriter effect function
+            function typeWriterEffect(element) {
+                const text = element.textContent;
+                element.textContent = '';
+                element.style.color = 'var(--arcade-white)';
+                element.style.opacity = '1';
                 
                 let i = 0;
                 const typeInterval = setInterval(() => {
-                    text.textContent = originalText.slice(0, i);
-                    i++;
-                    if (i > originalText.length) {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
                         clearInterval(typeInterval);
-                        // Wait 500ms before starting next paragraph
-                        setTimeout(() => typeAboutText(index + 1), 500);
                     }
-                }, 20); // Faster typing speed
+                }, 30); // Balanced typing speed
             }
             
-            // Start typing the first paragraph after a delay
-            setTimeout(() => typeAboutText(0), 1000);
-            
-            // Handle feedback buttons to redirect to contact page
-            const feedbackBtns = document.querySelectorAll('.feedback-btn');
-            feedbackBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
+            // Add hover effects to arcade buttons
+            const arcadeButtons = document.querySelectorAll('.arcade-btn');
+            arcadeButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all buttons
+                    arcadeButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Add some visual feedback
+                    this.style.transform = 'scale(0.9)';
                     setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                        // Redirect to contact page
-                        window.location.href = 'contact.html';
-                    }, 150);
+                        this.style.transform = '';
+                    }, 200);
                 });
             });
             
-            // Handle view code buttons
-            const viewCodeBtns = document.querySelectorAll('.view-code-btn');
-            viewCodeBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
+            // Add click effects to mosaic sections
+            const mosaicSections = document.querySelectorAll('.mosaic-section');
+            mosaicSections.forEach(section => {
+                section.addEventListener('click', function() {
+                    // Visual feedback for click
+                    this.style.transform = 'scale(0.98)';
                     setTimeout(() => {
-                        this.style.transform = 'scale(1.05)';
-                        // You can add actual GitHub links here
-                        alert('Opening GitHub repository...');
-                    }, 150);
+                        this.style.transform = '';
+                    }, 200);
                 });
             });
-            
-            // Handle verify achievement buttons
-            const verifyAchievementBtns = document.querySelectorAll('.verify-achievement-btn');
-            verifyAchievementBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1.05)';
-                        // You can add actual verification links here
-                        alert('Opening verification page...');
-                    }, 150);
-                });
-            });
-            
-            // Handle verify certification buttons
-            const verifyCertBtns = document.querySelectorAll('.verify-btn');
-            verifyCertBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1.1)';
-                        // You can add actual verification links here
-                        alert('Opening certification verification...');
-                    }, 150);
-                });
-            });
-            
-            // Add glitch effect to profile title occasionally
-            const profileTitle = document.querySelector('.profile-title');
-            setInterval(() => {
-                if (Math.random() < 0.1) { // 10% chance every interval
-                    profileTitle.style.animation = 'none';
-                    profileTitle.offsetHeight; // Trigger reflow
-                    profileTitle.style.animation = 'titleGlitch 0.5s linear';
-                }
-            }, 3000);
         });
     </script>
 </body>
