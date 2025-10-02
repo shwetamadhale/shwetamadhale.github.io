@@ -316,13 +316,67 @@
             animation: titleUnderline 2s ease-in-out infinite alternate;
         }
         
+/* About Section - Full Width */
+        .about-section {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid var(--arcade-green);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            animation: shimmer 8s linear infinite;
+            z-index: 1;
+        }
+        
+        .content-block {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--arcade-blue);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--arcade-pink);
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+            font-family: 'Press Start 2P', cursive;
+            position: relative;
+        }
+        
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--arcade-cyan), var(--arcade-pink));
+            animation: titleUnderline 2s ease-in-out infinite alternate;
+        }
+        
         /* About content */
         .about-text {
             margin-bottom: 20px;
             line-height: 1.8;
-            font-size: 0.8rem;
-            color: var(--arcade-gray);
+            font-size: 0.9rem;
+            color: var(--arcade-white);
             font-family: 'Press Start 2P', cursive;
+            position: relative;
+            z-index: 2;
         }
         
         /* Skills Grid */
@@ -331,12 +385,14 @@
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
+            position: relative;
+            z-index: 2;
         }
         
         .highlight {
             background: rgba(255, 255, 255, 0.05);
             padding: 20px;
-            border-left: 5px solid var(--arcade-green);
+            border: 3px solid var(--arcade-green);
             border-radius: 8px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
@@ -344,10 +400,26 @@
             cursor: pointer;
         }
         
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.8s ease-in-out;
+            z-index: 1;
+        }
+        
+        .highlight:hover::before {
+            left: 100%;
+        }
+        
         .highlight:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
-            border-left-color: var(--arcade-yellow);
+            transform: translateY(-8px) scale(1.05) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
+            border-color: var(--arcade-yellow);
         }
         
         .highlight h3 {
@@ -357,11 +429,15 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            position: relative;
+            z-index: 2;
         }
         
         .highlight p {
             font-size: 0.7rem;
             color: var(--arcade-gray);
+            position: relative;
+            z-index: 2;
         }
         
         /* Footer */
