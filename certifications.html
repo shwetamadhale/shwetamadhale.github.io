@@ -1,0 +1,1075 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications & Papers - Shweta's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👾</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👾</text></svg>">
+    
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        /* Arcade Color Palette */
+        :root {
+            --arcade-dark: #0a0a16;
+            --arcade-blue: #00a8ff;
+            --arcade-pink: #ff2a9d;
+            --arcade-purple: #9d4edd;
+            --arcade-green: #00ff88;
+            --arcade-yellow: #ffcc00;
+            --arcade-red: #ff3e3e;
+            --arcade-white: #ffffff;
+            --arcade-gray: #c0c0c0;
+            --arcade-light: #f0f0f0;
+            --arcade-orange: #ff6b35;
+            --arcade-cyan: #00ffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', cursive, monospace;
+            background-color: var(--arcade-dark);
+            color: var(--arcade-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 168, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 42, 157, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 15%);
+            image-rendering: pixelated;
+        }
+        
+        /* Main Container */
+        .arcade-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #222233 0%, #111122 100%);
+            border: 15px solid #333344;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Screen Area */
+        .arcade-screen {
+            background: linear-gradient(135deg, #0a0a16 0%, #1a1a2e 100%);
+            margin: 20px;
+            border: 10px solid #444455;
+            border-radius: 10px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Enhanced Scanline Effect */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1),
+                rgba(0, 0, 0, 0.1) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 10;
+            animation: scanlineFlicker 3s linear infinite;
+        }
+        
+        /* Screen Content */
+        .screen-content {
+            padding: 30px;
+            position: relative;
+            z-index: 5;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Main Content Wrapper */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Header with Arcade Style */
+        .arcade-header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--arcade-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 168, 255, 0.3);
+            position: relative;
+            animation: headerGlow 4s ease-in-out infinite alternate;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--arcade-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 157, 0.4);
+            margin: 0 auto 15px;
+            background: linear-gradient(45deg, var(--arcade-pink), var(--arcade-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            animation: float 6s ease-in-out infinite, profilePulse 2s ease-in-out infinite;
+        }
+        
+        .profile-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--arcade-yellow);
+            text-shadow: 3px 3px 0 var(--arcade-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: titleGlitch 5s linear infinite;
+        }
+        
+        .profile-tagline {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--arcade-green);
+            animation: colorShift 6s ease-in-out infinite;
+        }
+        
+        /* Navigation - Arcade Buttons */
+        .arcade-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 0;
+        }
+        
+        .arcade-btn {
+            background: linear-gradient(to bottom, var(--arcade-red) 0%, #cc0000 100%);
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            color: white;
+            font-size: 0.6rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 0 #990000, 0 0 10px rgba(255, 62, 62, 0.3);
+            text-align: center;
+            padding: 8px;
+            font-family: 'Press Start 2P', cursive;
+            text-decoration: none;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .arcade-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, var(--arcade-cyan), transparent, var(--arcade-pink), transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .arcade-btn:hover {
+            transform: translateY(3px) scale(1.1);
+            box-shadow: 0 2px 0 #990000, 0 0 25px rgba(255, 62, 62, 0.7);
+            animation: buttonBounce 0.6s ease-in-out;
+        }
+        
+        .arcade-btn:hover::before {
+            opacity: 1;
+            animation: neonSpin 1s linear infinite;
+        }
+        
+        .arcade-btn.active {
+            background: linear-gradient(to bottom, var(--arcade-yellow) 0%, #ccaa00 100%);
+            box-shadow: 0 5px 0 #997700, 0 0 10px rgba(255, 204, 0, 0.3);
+            color: #333;
+        }
+        
+        .btn-icon {
+            font-size: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--arcade-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--arcade-pink);
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+            font-family: 'Press Start 2P', cursive;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--arcade-cyan), var(--arcade-pink));
+            animation: titleUnderline 2s ease-in-out infinite alternate;
+        }
+        
+        /* Certifications Grid */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .certification-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid var(--arcade-orange);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .certification-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.2), transparent);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .certification-item:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+        
+        .certification-item:hover {
+            transform: scale(1.05) rotateY(10deg);
+            border-color: var(--arcade-yellow);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+        
+        .certification-icon {
+            font-size: 2.5rem;
+            color: var(--arcade-orange);
+            margin-bottom: 15px;
+            display: block;
+            animation: certFloat 3s ease-in-out infinite;
+        }
+        
+        .certification-item h3 {
+            font-size: 1rem;
+            color: var(--arcade-yellow);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .certification-item p {
+            font-size: 0.7rem;
+            color: var(--arcade-gray);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .certification-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--arcade-cyan);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .verify-btn {
+            background: var(--arcade-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .verify-btn:hover {
+            background: var(--arcade-yellow);
+            color: var(--arcade-dark);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+        
+        /* Papers Grid */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .paper-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid var(--arcade-purple);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .paper-item:hover {
+            transform: translateX(10px);
+            background: rgba(157, 78, 221, 0.1);
+            border-color: var(--arcade-pink);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+        }
+        
+        .paper-item h3 {
+            font-size: 1rem;
+            color: var(--arcade-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .paper-item .paper-meta {
+            font-size: 0.6rem;
+            color: var(--arcade-cyan);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .paper-item p {
+            font-size: 0.7rem;
+            color: var(--arcade-gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .paper-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .read-paper {
+            background: var(--arcade-blue);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .read-paper:hover {
+            background: var(--arcade-cyan);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .download-paper {
+            background: var(--arcade-green);
+            color: var(--arcade-dark);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .download-paper:hover {
+            background: var(--arcade-yellow);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+        
+        /* Footer */
+        .arcade-footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 3px solid var(--arcade-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--arcade-gray);
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--arcade-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.2) rotateY(180deg);
+            box-shadow: 0 0 15px var(--arcade-blue);
+            background: var(--arcade-blue);
+        }
+        
+        .social-icon {
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+        
+        .copyright {
+            font-size: 0.6rem;
+            color: var(--arcade-gray);
+        }
+        
+        /* Pacman Game Elements */
+        .pacman-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-pacman {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--arcade-yellow);
+            border-radius: 50%;
+            animation: floatPacman 15s linear infinite;
+            opacity: 0.6;
+        }
+        
+        .floating-ghost {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50% 50% 0 0;
+            animation: floatGhost 20s linear infinite;
+            opacity: 0.5;
+        }
+        
+        .floating-ghost::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: inherit;
+            clip-path: polygon(0 0, 20% 100%, 40% 0, 60% 100%, 80% 0, 100% 100%);
+        }
+        
+        .floating-ghost.red {
+            background-color: var(--arcade-red);
+        }
+        
+        .floating-ghost.pink {
+            background-color: var(--arcade-pink);
+        }
+        
+        .floating-ghost.blue {
+            background-color: var(--arcade-blue);
+        }
+        
+        .floating-ghost.orange {
+            background-color: var(--arcade-orange);
+        }
+        
+        .pixel-border {
+            position: absolute;
+            background-color: var(--arcade-yellow);
+            opacity: 0.7;
+        }
+        
+        .pixel-border.top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+        
+        .pixel-border.bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+        
+        .pixel-border.left {
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+        }
+        
+        .pixel-border.right {
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+        }
+        
+        /* Animations */
+        @keyframes headerGlow {
+            0% { box-shadow: 0 0 15px rgba(0, 168, 255, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(0, 168, 255, 0.7); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes profilePulse {
+            0% { box-shadow: 0 0 20px rgba(255, 42, 157, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 42, 157, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 42, 157, 0.4); }
+        }
+        
+        @keyframes titleGlitch {
+            0% { transform: translate(0); }
+            95% { transform: translate(0); }
+            96% { transform: translate(2px, -2px); }
+            97% { transform: translate(-2px, 2px); }
+            98% { transform: translate(2px, -2px); }
+            99% { transform: translate(-2px, 2px); }
+            100% { transform: translate(0); }
+        }
+        
+        @keyframes colorShift {
+            0% { color: var(--arcade-green); }
+            50% { color: var(--arcade-cyan); }
+            100% { color: var(--arcade-green); }
+        }
+        
+        @keyframes buttonBounce {
+            0% { transform: translateY(3px) scale(1.1); }
+            50% { transform: translateY(0) scale(1.15); }
+            100% { transform: translateY(3px) scale(1.1); }
+        }
+        
+        @keyframes neonSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes iconFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes titleUnderline {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes certFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes scanlineFlicker {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.8; }
+        }
+        
+        @keyframes floatPacman {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(200px, 0) rotate(180deg); }
+            75% { transform: translate(100px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        @keyframes floatGhost {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-100px, 50px); }
+            50% { transform: translate(-200px, 0); }
+            75% { transform: translate(-100px, -50px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .arcade-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .arcade-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 0.5rem;
+            }
+            
+            .profile-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .certifications-grid,
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-pacman, .floating-ghost {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .screen-content {
+                padding: 15px;
+            }
+            
+            .certification-item,
+            .paper-item {
+                padding: 15px;
+            }
+            
+            .profile-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Arcade Container -->
+    <div class="arcade-container" id="main-container">
+        <!-- Pacman Game Elements -->
+        <div class="pacman-elements">
+            <div class="floating-pacman" style="top: 10%; left: 5%;"></div>
+            <div class="floating-pacman" style="top: 30%; left: 80%;"></div>
+            <div class="floating-pacman" style="top: 70%; left: 15%;"></div>
+            <div class="floating-ghost red" style="top: 20%; left: 60%;"></div>
+            <div class="floating-ghost pink" style="top: 50%; left: 10%;"></div>
+            <div class="floating-ghost blue" style="top: 80%; left: 70%;"></div>
+            <div class="floating-ghost orange" style="top: 40%; left: 90%;"></div>
+            <div class="pixel-border top"></div>
+            <div class="pixel-border bottom"></div>
+            <div class="pixel-border left"></div>
+            <div class="pixel-border right"></div>
+        </div>
+        
+        <!-- Arcade Screen -->
+        <div class="arcade-screen">
+            <div class="scanlines"></div>
+            
+            <!-- Screen Content -->
+            <div class="screen-content">
+                <!-- Header -->
+                <div class="arcade-header">
+                    <div class="profile-img">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h1 class="profile-title">Certifications & Papers</h1>
+                    <p class="profile-tagline">Credentials & Research Publications</p>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="arcade-nav">
+                    <a href="index.html" class="arcade-btn">
+                        <i class="fas fa-home btn-icon"></i>
+                        HOME
+                    </a>
+
+                    <a href="about.html" class="arcade-btn">
+                        <i class="fas fa-graduation-cap btn-icon"></i>
+                        ABOUT
+                    </a>
+
+                    <a href="projects.html" class="arcade-btn">
+                        <i class="fas fa-code btn-icon"></i>
+                        PROJECTS
+                    </a>
+
+                    <a href="achievements.html" class="arcade-btn">
+                        <i class="fas fa-trophy btn-icon"></i>
+                        HIGHLIGHT
+                    </a>
+
+                    <a href="certifications.html" class="arcade-btn active">
+                        <i class="fas fa-certificate btn-icon"></i>
+                        CERTS & PAPERS
+                    </a>
+
+                    <a href="contact.html" class="arcade-btn">
+                        <i class="fas fa-envelope btn-icon"></i>
+                        CONTACT
+                    </a>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Certifications Section -->
+                    <div>
+                        <h2 class="section-title">Professional Certifications</h2>
+                        <div class="certifications-grid">
+                            <div class="certification-item">
+                                <i class="fas fa-code certification-icon"></i>
+                                <h3>Full Stack Web Development</h3>
+                                <p>Advanced certification in modern web development technologies and frameworks</p>
+                                <div class="certification-meta">
+                                    <span>XYZ Academy</span>
+                                    <span>2023</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <i class="fas fa-cloud certification-icon"></i>
+                                <h3>AWS Cloud Practitioner</h3>
+                                <p>Amazon Web Services foundational cloud certification</p>
+                                <div class="certification-meta">
+                                    <span>Amazon Web Services</span>
+                                    <span>2023</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <i class="fas fa-robot certification-icon"></i>
+                                <h3>Machine Learning Specialist</h3>
+                                <p>Advanced machine learning algorithms and neural networks</p>
+                                <div class="certification-meta">
+                                    <span>Data Science Institute</span>
+                                    <span>2022</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <i class="fas fa-shield-alt certification-icon"></i>
+                                <h3>Cybersecurity Fundamentals</h3>
+                                <p>Network security, cryptography, and ethical hacking principles</p>
+                                <div class="certification-meta">
+                                    <span>CyberSecure Inc.</span>
+                                    <span>2022</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <i class="fas fa-mobile-alt certification-icon"></i>
+                                <h3>React Native Development</h3>
+                                <p>Cross-platform mobile application development with React Native</p>
+                                <div class="certification-meta">
+                                    <span>Mobile Dev Academy</span>
+                                    <span>2021</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                            
+                            <div class="certification-item">
+                                <i class="fas fa-database certification-icon"></i>
+                                <h3>MongoDB Developer</h3>
+                                <p>NoSQL database design, implementation, and optimization</p>
+                                <div class="certification-meta">
+                                    <span>MongoDB University</span>
+                                    <span>2021</span>
+                                </div>
+                                <button class="verify-btn">Verify Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Papers Section -->
+                    <div>
+                        <h2 class="section-title">Research Papers & Publications</h2>
+                        <div class="papers-grid">
+                            <div class="paper-item">
+                                <h3>The Future of Web Gaming: WebAssembly and Beyond</h3>
+                                <div class="paper-meta">
+                                    <span>International Journal of Web Technologies</span>
+                                    <span>2023</span>
+                                </div>
+                                <p>This paper explores the potential of WebAssembly in revolutionizing browser-based gaming experiences, discussing performance benchmarks and implementation strategies for next-generation web games.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paper-item">
+                                <h3>Progressive Web Apps: The Mobile Experience Revolution</h3>
+                                <div class="paper-meta">
+                                    <span>Mobile Computing Review</span>
+                                    <span>2022</span>
+                                </div>
+                                <p>An in-depth analysis of how Progressive Web Apps are transforming mobile user experience, with case studies on performance improvements and user engagement metrics.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paper-item">
+                                <h3>Neural Networks in Real-time Web Applications</h3>
+                                <div class="paper-meta">
+                                    <span>AI Systems Journal</span>
+                                    <span>2022</span>
+                                </div>
+                                <p>This research paper discusses the implementation of lightweight neural networks in browser environments for real-time data processing and user interaction enhancement.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paper-item">
+                                <h3>Blockchain Integration in Modern Web Architecture</h3>
+                                <div class="paper-meta">
+                                    <span>Distributed Systems Quarterly</span>
+                                    <span>2021</span>
+                                </div>
+                                <p>Exploring the challenges and opportunities of integrating blockchain technology with traditional web applications, focusing on security and decentralization benefits.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paper-item">
+                                <h3>Accessibility-First Design: Building Inclusive Web Experiences</h3>
+                                <div class="paper-meta">
+                                    <span>Web Standards Journal</span>
+                                    <span>2021</span>
+                                </div>
+                                <p>A comprehensive guide to implementing accessibility-first design principles in modern web development, with practical examples and compliance guidelines.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paper-item">
+                                <h3>The Impact of Microservices on Web Application Performance</h3>
+                                <div class="paper-meta">
+                                    <span>Software Architecture Review</span>
+                                    <span>2020</span>
+                                </div>
+                                <p>Comparative study of monolithic vs. microservices architecture in large-scale web applications, analyzing performance metrics and scalability considerations.</p>
+                                <div class="paper-actions">
+                                    <button class="read-paper">Read Abstract</button>
+                                    <button class="download-paper">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="arcade-footer">
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter social-icon"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-codepen social-icon"></i>
+                        </a>
+                    </div>
+                    <p class="footer-text">Explore my credentials and research work</p>
+                    <p class="copyright">© 2023 Shweta's Arcade. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to arcade buttons
+            const arcadeButtons = document.querySelectorAll('.arcade-btn');
+            arcadeButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    
+                    // Remove active class from all buttons
+                    arcadeButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Add some visual feedback
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Add floating animation to certification items
+            const certItems = document.querySelectorAll('.certification-item');
+            certItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add floating animation to paper items
+            const paperItems = document.querySelectorAll('.paper-item');
+            paperItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.15}s`;
+            });
+            
+            // Verify certificate button functionality
+            const verifyButtons = document.querySelectorAll('.verify-btn');
+            verifyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const certTitle = this.parentElement.querySelector('h3').textContent;
+                    alert(`Verification process initiated for: ${certTitle}\n\nThis would typically redirect to the official certification verification page.`);
+                });
+            });
+            
+            // Paper action buttons functionality
+            const readButtons = document.querySelectorAll('.read-paper');
+            readButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const paperTitle = this.parentElement.parentElement.querySelector('h3').textContent;
+                    alert(`Abstract for: ${paperTitle}\n\nThis would display the full abstract of the research paper.`);
+                });
+            });
+            
+            const downloadButtons = document.querySelectorAll('.download-paper');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const paperTitle = this.parentElement.parentElement.querySelector('h3').textContent;
+                    alert(`Download initiated for: ${paperTitle}\n\nThis would download the full research paper in PDF format.`);
+                });
+            });
+            
+            // Add some random floating elements
+            function createFloatingElement() {
+                const container = document.querySelector('.pacman-elements');
+                const types = ['pacman', 'ghost-red', 'ghost-pink', 'ghost-blue', 'ghost-orange'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                
+                const element = document.createElement('div');
+                
+                if (type === 'pacman') {
+                    element.className = 'floating-pacman';
+                } else {
+                    element.className = `floating-ghost ${type.split('-')[1]}`;
+                }
+                
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                element.style.animationDuration = `${15 + Math.random() * 20}s`;
+                
+                container.appendChild(element);
+                
+                // Remove element after animation completes
+                setTimeout(() => {
+                    if (element.parentNode) {
+                        element.parentNode.removeChild(element);
+                    }
+                }, 35000);
+            }
+            
+            // Create initial floating elements
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createFloatingElement, i * 1000);
+            }
+            
+            // Continue creating floating elements periodically
+            setInterval(createFloatingElement, 3000);
+        });
+    </script>
+</body>
+</html>

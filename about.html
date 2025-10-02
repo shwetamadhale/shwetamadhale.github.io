@@ -440,6 +440,48 @@
             z-index: 2;
         }
         
+        /* Timeline styles - Added from index.html */
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--arcade-green);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+            background: rgba(0, 255, 136, 0.1);
+            border-left-width: 8px;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        .timeline-year {
+            color: var(--arcade-yellow);
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-title {
+            color: var(--arcade-green);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-desc {
+            color: var(--arcade-gray);
+            font-size: 0.65rem;
+        }
+        
         /* Footer */
         .arcade-footer {
             background: linear-gradient(to bottom, #333344 0%, #222233 100%);
@@ -785,6 +827,23 @@
                                 experiences that solve real-world problems. My interest in AI and machine learning has led me 
                                 to explore how these technologies can enhance user experiences and create more intelligent systems.
                             </p>
+                        </div>
+                        
+                        <!-- Timeline Section - Added from index.html -->
+                        <div class="content-block">
+                            <h2 class="content-title">Education</h2>
+                            <div class="education-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2020 - 2024</div>
+                                    <div class="timeline-title">B.Tech in Computer Science</div>
+                                    <div class="timeline-desc">XYZ University, CGPA: 9.2/10</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2018 - 2020</div>
+                                    <div class="timeline-title">Higher Secondary</div>
+                                    <div class="timeline-desc">ABC School, Percentage: 92%</div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="content-block">
