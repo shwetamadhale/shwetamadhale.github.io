@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shweta's Arcade Portfolio</title>
+    <title>Shweta's Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicons -->
@@ -71,7 +71,7 @@
             position: relative;
             width: 600px;
             height: 400px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .maze {
@@ -342,7 +342,7 @@
             position: relative;
             animation: headerGlow 4s ease-in-out infinite alternate;
         }
-        
+
         .profile-img {
             width: 120px;
             height: 120px;
@@ -829,6 +829,11 @@
         
         .achievement-content {
             flex: 1;
+        }
+
+        .achievement-content p {
+            font-size: 0.65rem;
+            color: var(--arcade-gray);
         }
         
         .achievement-title {
@@ -1563,7 +1568,7 @@
             </div>
         </div>
         
-        <h1 class="intro-title">SHWETA'S ARCADE</h1>
+        <h1 class="intro-title">SHWETA'S PORTFOLIO</h1>
         <p class="intro-subtitle">Loading Portfolio...</p>
         
         <div class="loading-bar">
@@ -1576,8 +1581,6 @@
                 <i class="fas fa-play"></i> PRESS TO BEGIN
             </button>
         </div>
-        
-        <button class="skip-intro" id="skip-intro">SKIP INTRO</button>
     </div>
     
     <!-- Main Arcade Container -->
@@ -1606,10 +1609,10 @@
                 <!-- Header -->
                 <div class="arcade-header">
                     <div class="profile-img">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-astronaut"></i>
                     </div>
-                    <h1 class="profile-title">Shweta's Arcade</h1>
-                    <p class="profile-tagline">Full Stack Developer & Game Enthusiast</p>
+                    <h1 class="profile-title">Shweta M's Portfolio</h1>
+                    <p class="profile-tagline">Full Stack Developer & AI Enthusiast</p>
                 </div>
                 
                 <!-- Navigation -->
@@ -1856,7 +1859,6 @@
             const mainContainer = document.getElementById('main-container');
             const loadingProgress = document.getElementById('loading-progress');
             const loadingText = document.getElementById('loading-text');
-            const skipIntroBtn = document.getElementById('skip-intro');
             const beginBtn = document.getElementById('begin-btn');
             const aboutText = document.getElementById('about-text');
             
@@ -1869,6 +1871,32 @@
                 "Almost Ready...",
                 "Welcome to Shweta's Arcade!"
             ];
+            
+            // Add this variable to track if transition has already happened
+            let hasTransitioned = false;
+            
+            // Function to handle transition to main content
+            function transitionToContent() {
+                if (hasTransitioned) return;
+                
+                hasTransitioned = true;
+                
+                // Smooth transition to main content
+                pacmanIntro.style.opacity = '0';
+                pacmanIntro.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    pacmanIntro.style.display = 'none';
+                    mainContainer.style.opacity = '1';
+                    mainContainer.style.transform = 'translateY(0)';
+                    
+                    // Typewriter effect for about text
+                    typeWriterEffect(aboutText);
+                }, 1500);
+            }
+            
+            // Auto-transition after 5 seconds
+            setTimeout(transitionToContent, 5000);
             
             // Simulate loading progress - balanced speed
             const loadingInterval = setInterval(() => {
@@ -1904,36 +1932,8 @@
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = '';
-                    
-                    // Smooth transition to main content
-                    pacmanIntro.style.opacity = '0';
-                    pacmanIntro.style.transform = 'translateY(-20px)';
-                    
-                    setTimeout(() => {
-                        pacmanIntro.style.display = 'none';
-                        mainContainer.style.opacity = '1';
-                        mainContainer.style.transform = 'translateY(0)';
-                        
-                        // Typewriter effect for about text
-                        typeWriterEffect(aboutText);
-                    }, 1500); // Smooth transition time
+                    transitionToContent();
                 }, 200);
-            });
-            
-            // Skip intro button
-            skipIntroBtn.addEventListener('click', function() {
-                clearInterval(loadingInterval);
-                pacmanIntro.style.opacity = '0';
-                pacmanIntro.style.transform = 'translateY(-20px)';
-                
-                setTimeout(() => {
-                    pacmanIntro.style.display = 'none';
-                    mainContainer.style.opacity = '1';
-                    mainContainer.style.transform = 'translateY(0)';
-                    
-                    // Typewriter effect for about text
-                    typeWriterEffect(aboutText);
-                }, 800);
             });
             
             // Fixed Typewriter effect function
