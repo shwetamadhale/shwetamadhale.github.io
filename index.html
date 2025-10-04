@@ -517,6 +517,12 @@
             color: var(--arcade-white);
         }
         
+        /* Hide paragraphs initially for typewriter effect */
+        .about-text p {
+            opacity: 0;
+            margin-bottom: 20px;
+        }
+        
         /* Mosaic Layout Container */
         .mosaic-container {
             display: grid;
@@ -1658,18 +1664,14 @@
                     <!-- About Section -->
                     <div class="about-section">
                         <h2 class="section-title">About Me</h2>
+                        <div class="about-text" id="about-text">
                             <p>Welcome, I am Shweta! I like building things that are technically challenging and genuinely useful.</p>
-                            
                             <p>Most of my work sits somewhere between full stack engineering, applied artificial intelligence, and systems. This includes things like real-time collaboration, AI-powered tools, and the infrastructure that keeps them from falling over. I enjoy designing the architecture, writing the code, and quietly panicking when it's time to deploy.</p>
-                            
                             <p>Here, you will find everything.</p>
-                            
                             <p>The stuff I've shipped, things I've broken and fixed again.</p>
-                            
                             <p>If you're here to get a sense of what I do (or who I am), you're in the right place.</p>
-                            
                             <p>Hope you enjoy your visit! Stick around, more exciting stuff coming soon 😀.</p>
-                       
+                        </div>
                     </div>
                     
                     <!-- Mosaic Layout -->
@@ -1951,23 +1953,55 @@
                 }, 200);
             });
             
-            // Fixed Typewriter effect function
+            // Fixed Typewriter effect function for paragraphs
             function typeWriterEffect(element) {
-                const text = element.textContent;
-                element.textContent = '';
-                element.style.color = 'var(--arcade-white)';
-                element.style.opacity = '1';
+                const paragraphs = element.querySelectorAll('p');
+                let currentParagraph = 0;
                 
-                let i = 0;
-                const typeInterval = setInterval(() => {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typeInterval);
+                // Hide all paragraphs initially
+                paragraphs.forEach(p => {
+                    p.style.opacity = '0';
+                    p.textContent = ''; // Clear the text content
+                });
+                
+                function typeNextParagraph() {
+                    if (currentParagraph >= paragraphs.length) return;
+                    
+                    const paragraph = paragraphs[currentParagraph];
+                    const originalText = paragraph.getAttribute('data-original-text') || paragraph.textContent;
+                    
+                    // Store original text if not already stored
+                    if (!paragraph.getAttribute('data-original-text')) {
+                        paragraph.setAttribute('data-original-text', originalText);
                     }
-                }, 30); // Balanced typing speed
+                    
+                    paragraph.style.opacity = '1';
+                    paragraph.style.color = 'var(--arcade-white)';
+                    
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < originalText.length) {
+                            paragraph.textContent += originalText.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                            currentParagraph++;
+                            setTimeout(typeNextParagraph, 800); // Delay between paragraphs
+                        }
+                    }, 30); // Balanced typing speed
+                }
+                
+                // Start the typewriter effect
+                setTimeout(typeNextParagraph, 500);
             }
+            
+            // Store original text in data attributes before clearing
+            window.addEventListener('load', function() {
+                const aboutParagraphs = document.querySelectorAll('#about-text p');
+                aboutParagraphs.forEach(p => {
+                    p.setAttribute('data-original-text', p.textContent);
+                });
+            });
             
             // Add hover effects to arcade buttons
             const arcadeButtons = document.querySelectorAll('.arcade-btn');
