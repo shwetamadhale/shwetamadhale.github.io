@@ -523,20 +523,14 @@
             margin-bottom: 20px;
         }
         
-        /* Mosaic Layout Container */
+        /* Mosaic Layout Container - IMPROVED */
         .mosaic-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            grid-auto-rows: auto;
-        }
-        
-        /* Last row specific styling for 2 columns */
-        .last-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 25px;
+            grid-auto-rows: minmax(250px, auto);
+            grid-auto-flow: dense;
+            align-items: stretch;
         }
         
         /* Mosaic Items */
@@ -548,8 +542,16 @@
             font-family: 'Press Start 2P', cursive;
             position: relative;
             overflow: hidden;
-            min-height: 300px;
+            min-height: 250px;
             cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Ensure all child elements within mosaic sections stretch properly */
+        .mosaic-section > * {
+            flex: 1;
         }
         
         /* Glitch effect overlay */
@@ -594,16 +596,29 @@
             border: 3px solid var(--arcade-red);
             box-shadow: 0 0 20px rgba(255, 62, 62, 0.2);
         }
-        
-        /* Last row sections */
-        .certifications-section {
-            border: 3px solid var(--arcade-orange) !important;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2) !important;
+        .mosaic-section:nth-child(7) { 
+            border: 3px solid var(--arcade-orange);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+        }
+        .mosaic-section:nth-child(8) { 
+            border: 3px solid var(--arcade-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
         }
         
-        .explore-section {
-            border: 3px solid var(--arcade-cyan) !important;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important;
+        /* Smart spanning for better space utilization */
+        @media (min-width: 1200px) {
+            .mosaic-section:nth-child(1) {
+                grid-column: span 2;
+            }
+            
+            .mosaic-section:nth-child(3),
+            .mosaic-section:nth-child(4) {
+                grid-row: span 2;
+            }
+            
+            .mosaic-section:nth-child(7) {
+                grid-column: span 2;
+            }
         }
         
         .mosaic-section:hover {
@@ -1463,11 +1478,7 @@
         /* Responsive Design */
         @media (max-width: 1200px) {
             .mosaic-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .last-row {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
         
@@ -1799,12 +1810,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Last Row - Certifications & Explore -->
-                    <div class="last-row">
+                        
                         <!-- Certifications -->
-                        <div class="mosaic-section certifications-section">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Certifications</h2>
                             <div class="certifications-grid">
                                 <div class="certification-item">
@@ -1823,7 +1831,7 @@
                         </div>
                         
                         <!-- Explore More -->
-                        <div class="mosaic-section explore-section">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Explore More</h2>
                             <div class="resources">
                                 <div class="resource-item">
