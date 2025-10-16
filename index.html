@@ -47,7 +47,51 @@
                 radial-gradient(circle at 20% 30%, rgba(0, 168, 255, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 80% 70%, rgba(255, 42, 157, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 15%);
-            image-rendering: pixelated;
+            image-rendering: pixelated; /* Keep for background elements */
+            
+            /* Ensure text remains crisp */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-smooth: always;
+        }
+        
+        /* Override pixelation for all text elements */
+        .about-text,
+        .profile-title,
+        .profile-tagline,
+        .section-title,
+        .skills-category-title,
+        .timeline-year,
+        .timeline-title,
+        .timeline-desc,
+        .project-title,
+        .project-desc,
+        .achievement-title,
+        .achievement-content p,
+        .certification-item h3,
+        .certification-item p,
+        .footer-text,
+        .copyright,
+        .arcade-btn,
+        .intro-title,
+        .intro-subtitle,
+        .loading-text,
+        .paper-item h3,
+        .paper-item p,
+        .link-item h3,
+        .social-link,
+        .begin-btn,
+        .skip-intro,
+        .view-code-btn,
+        .view-paper-btn,
+        .read-paper,
+        .view-certificate-btn,
+        .verify-btn {
+            image-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
         
         /* Pacman Intro Styling */
@@ -501,7 +545,7 @@
         .about-text {
             margin-bottom: 20px;
             line-height: 1.8;
-            font-size: 0.9rem;
+            font-size: 1rem; /* Increased from 0.9rem */
             font-family: 'Press Start 2P', cursive;
             position: relative;
             z-index: 2;
@@ -642,7 +686,7 @@
         }
         
         .skills-category-title {
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Increased from 0.8rem */
             color: var(--arcade-yellow);
             margin-bottom: 12px;
             border-bottom: 1px solid var(--arcade-blue);
@@ -724,7 +768,7 @@
         
         .timeline-title {
             color: var(--arcade-green);
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Increased from 0.8rem */
             margin-bottom: 5px;
         }
         
@@ -759,7 +803,7 @@
         }
         
         .project-title {
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Increased from 0.8rem */
             color: var(--arcade-yellow);
             margin-bottom: 8px;
         }
@@ -927,7 +971,7 @@
         .achievement-title {
             font-weight: bold;
             color: var(--arcade-green);
-            font-size: 0.75rem;
+            font-size: 0.85rem; /* Increased from 0.75rem */
             margin-bottom: 8px;
         }
         
@@ -1280,7 +1324,7 @@
             0% { box-shadow: 0 0 15px rgba(0, 168, 255, 0.3); }
             100% { box-shadow: 0 0 30px rgba(0, 168, 255, 0.7); }
         }
-        
+
         @keyframes float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
