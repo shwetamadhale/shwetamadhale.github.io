@@ -523,17 +523,57 @@
             margin-bottom: 20px;
         }
         
-        /* Mosaic Layout Container - IMPROVED */
+        /* MOSAIC LAYOUT - JOB-FOCUSED PRIORITY */
         .mosaic-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            grid-auto-rows: minmax(250px, auto);
-            grid-auto-flow: dense;
-            align-items: stretch;
+            grid-auto-rows: minmax(200px, auto);
+            align-items: start;
         }
-        
-        /* Mosaic Items */
+
+        /* Define specific grid positions for each section - JOB FOCUSED */
+        .mosaic-section:nth-child(1) { /* Skills - HIGH PRIORITY */
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .mosaic-section:nth-child(2) { /* Experience - HIGH PRIORITY */
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .mosaic-section:nth-child(3) { /* Education - HIGH PRIORITY */
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .mosaic-section:nth-child(4) { /* Featured Projects - HIGH PRIORITY */
+            grid-column: 2 / span 2;
+            grid-row: 2;
+        }
+
+        .mosaic-section:nth-child(5) { /* Papers - MEDIUM PRIORITY */
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .mosaic-section:nth-child(6) { /* Achievements - MEDIUM PRIORITY */
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .mosaic-section:nth-child(7) { /* Certifications - COMPACT */
+            grid-column: 3;
+            grid-row: 3;
+        }
+
+        .mosaic-section:nth-child(8) { /* Connect */
+            grid-column: 1 / span 3;
+            grid-row: 4;
+        }
+
+        /* Mosaic Items - Fit to content exactly */
         .mosaic-section {
             background: rgba(0, 0, 0, 0.5);
             padding: 25px;
@@ -542,33 +582,10 @@
             font-family: 'Press Start 2P', cursive;
             position: relative;
             overflow: hidden;
-            min-height: 250px;
-            cursor: pointer;
-            height: 100%;
             display: flex;
             flex-direction: column;
-        }
-        
-        /* Ensure all child elements within mosaic sections stretch properly */
-        .mosaic-section > * {
-            flex: 1;
-        }
-        
-        /* Glitch effect overlay */
-        .mosaic-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.8s ease-in-out;
-            z-index: 1;
-        }
-        
-        .mosaic-section:hover::before {
-            left: 100%;
+            height: fit-content;
+            min-height: 200px;
         }
         
         /* Different border colors for mosaic sections */
@@ -605,25 +622,9 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
         }
         
-        /* Smart spanning for better space utilization */
-        @media (min-width: 1200px) {
-            .mosaic-section:nth-child(1) {
-                grid-column: span 2;
-            }
-            
-            .mosaic-section:nth-child(3),
-            .mosaic-section:nth-child(4) {
-                grid-row: span 2;
-            }
-            
-            .mosaic-section:nth-child(7) {
-                grid-column: span 2;
-            }
-        }
-        
         .mosaic-section:hover {
-            transform: translateY(-12px) scale(1.05) rotateY(5deg);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
             animation: sectionPulse 0.6s ease-in-out;
         }
         
@@ -635,10 +636,22 @@
             color: inherit;
         }
         
-        /* Skills Grid inside mosaic */
+        /* Skills Grid - All in one block */
+        .skills-category {
+            margin-bottom: 25px;
+        }
+        
+        .skills-category-title {
+            font-size: 0.8rem;
+            color: var(--arcade-yellow);
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--arcade-blue);
+            padding-bottom: 5px;
+        }
+        
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 12px;
             position: relative;
             z-index: 2;
@@ -646,10 +659,10 @@
         
         .skill-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 12px;
+            padding: 12px 8px;
             border-radius: 8px;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             border: 1px solid var(--arcade-blue);
             transition: all 0.3s ease;
             position: relative;
@@ -657,7 +670,7 @@
         }
         
         .skill-item:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             background: rgba(0, 168, 255, 0.2);
             border-color: var(--arcade-cyan);
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
@@ -679,7 +692,7 @@
         }
         
         /* Timeline styles */
-        .education-timeline {
+        .timeline {
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -722,8 +735,8 @@
         
         /* Featured Projects Grid */
         .featured-projects {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
             position: relative;
             z-index: 2;
@@ -779,7 +792,7 @@
             margin-top: 10px;
         }
         
-        .view-code-btn {
+        .view-code-btn, .view-paper-btn {
             background: var(--arcade-purple);
             color: white;
             border: none;
@@ -791,13 +804,67 @@
             transition: all 0.3s ease;
         }
         
-        .view-code-btn:hover {
+        .view-code-btn:hover, .view-paper-btn:hover {
             background: var(--arcade-pink);
             transform: scale(1.05);
             box-shadow: 0 3px 10px rgba(255, 42, 157, 0.4);
         }
         
-        /* Achievements List - Fixed */
+        /* Papers List */
+        .papers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .paper-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--arcade-purple);
+            transition: all 0.3s ease;
+        }
+        
+        .paper-item:hover {
+            transform: translateX(10px);
+            background: rgba(157, 78, 221, 0.1);
+            border-left-width: 8px;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
+        }
+        
+        .paper-item h3 {
+            font-size: 0.8rem;
+            color: var(--arcade-yellow);
+            margin-bottom: 8px;
+        }
+        
+        .paper-item p {
+            font-size: 0.65rem;
+            color: var(--arcade-gray);
+            margin-bottom: 10px;
+        }
+        
+        .read-paper {
+            background: var(--arcade-blue);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .read-paper:hover {
+            background: var(--arcade-cyan);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* Achievements List */
         .achievement-list {
             list-style-type: none;
             display: flex;
@@ -864,153 +931,38 @@
             margin-bottom: 8px;
         }
         
-        /* Fixed Achievement Actions */
-        .achievement-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        .verify-achievement-btn {
-            background: var(--arcade-purple);
+        .view-certificate-btn {
+            background: var(--arcade-orange);
             color: white;
             border: none;
             padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.65rem;
+            border-radius: 5px;
+            font-size: 0.6rem;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
             transition: all 0.3s ease;
+            margin-top: 8px;
         }
         
-        .verify-achievement-btn:hover {
-            background: var(--arcade-pink);
-            transform: scale(1.05);
-            box-shadow: 0 3px 10px rgba(255, 42, 157, 0.4);
-        }
-        
-        /* Working On Items */
-        .working-on {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .work-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--arcade-yellow);
-            transition: all 0.3s ease;
-        }
-        
-        .work-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 204, 0, 0.1);
-            border-color: var(--arcade-yellow);
-            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.3);
-        }
-        
-        .work-item h3 {
-            font-size: 0.8rem;
-            color: var(--arcade-yellow);
-            margin-bottom: 8px;
-        }
-        
-        .work-item p {
-            font-size: 0.65rem;
-            color: var(--arcade-gray);
-            margin-bottom: 10px;
-        }
-        
-        .feedback-btn {
-            background: var(--arcade-green);
+        .view-certificate-btn:hover {
+            background: var(--arcade-yellow);
             color: var(--arcade-dark);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.6rem;
-            cursor: pointer;
-            font-family: 'Press Start 2P', cursive;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feedback-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
-            animation: buttonGlow 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
         }
         
-        /* Papers List */
-        .papers-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .paper-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--arcade-purple);
-            transition: all 0.3s ease;
-        }
-        
-        .paper-item:hover {
-            transform: translateX(10px);
-            background: rgba(157, 78, 221, 0.1);
-            border-left-width: 8px;
-            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
-        }
-        
-        .paper-item h3 {
-            font-size: 0.8rem;
-            color: var(--arcade-yellow);
-            margin-bottom: 8px;
-        }
-        
-        .paper-item p {
-            font-size: 0.65rem;
-            color: var(--arcade-gray);
-            margin-bottom: 10px;
-        }
-        
-        .read-paper {
-            background: var(--arcade-blue);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.6rem;
-            cursor: pointer;
-            font-family: 'Press Start 2P', cursive;
-            transition: all 0.3s ease;
-        }
-        
-        .read-paper:hover {
-            background: var(--arcade-cyan);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
-        }
-        
-        /* Certifications Grid */
+        /* Certifications Grid - COMPACT */
         .certifications-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 12px;
             position: relative;
             z-index: 2;
         }
         
         .certification-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             border: 2px solid var(--arcade-orange);
             text-align: center;
@@ -1037,42 +989,37 @@
         }
         
         .certification-item:hover {
-            transform: scale(1.05) rotateY(10deg);
+            transform: scale(1.03) rotateY(5deg);
             border-color: var(--arcade-yellow);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
         }
         
         .certification-icon {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--arcade-orange);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
-            animation: certFloat 3s ease-in-out infinite;
         }
         
         .certification-item h3 {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--arcade-yellow);
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 6px;
         }
         
         .certification-item p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--arcade-gray);
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 8px;
         }
         
         .verify-btn {
             background: var(--arcade-orange);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 5px;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
             transition: all 0.3s ease;
@@ -1083,87 +1030,52 @@
         .verify-btn:hover {
             background: var(--arcade-yellow);
             color: var(--arcade-dark);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(255, 204, 0, 0.4);
         }
         
-        /* Resources Grid */
-        .resources {
+        /* Links Grid */
+        .links-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
             position: relative;
             z-index: 2;
         }
         
-        .resource-item {
+        .link-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+            padding: 20px 15px;
+            border-radius: 10px;
             border: 2px solid var(--arcade-cyan);
+            text-align: center;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: var(--arcade-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
         
-        .resource-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .resource-item:hover::after {
-            opacity: 1;
-        }
-        
-        .resource-item:hover {
+        .link-item:hover {
             transform: scale(1.05);
+            background: rgba(0, 255, 255, 0.1);
             border-color: var(--arcade-pink);
             box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+            color: var(--arcade-white);
         }
         
-        .resource-item h3 {
+        .link-icon {
+            font-size: 2rem;
+            color: var(--arcade-cyan);
+        }
+        
+        .link-item h3 {
             font-size: 0.8rem;
             color: var(--arcade-yellow);
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .resource-item p {
-            font-size: 0.65rem;
-            color: var(--arcade-gray);
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .resource-btn {
-            background: var(--arcade-cyan);
-            color: var(--arcade-dark);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.6rem;
-            cursor: pointer;
-            font-family: 'Press Start 2P', cursive;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .resource-btn:hover {
-            background: var(--arcade-pink);
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 42, 157, 0.4);
         }
         
         /* Footer */
@@ -1425,9 +1337,9 @@
         }
         
         @keyframes sectionPulse {
-            0% { transform: translateY(-12px) scale(1.05) rotateY(5deg); }
-            50% { transform: translateY(-12px) scale(1.08) rotateY(5deg); }
-            100% { transform: translateY(-12px) scale(1.05) rotateY(5deg); }
+            0% { transform: translateY(-8px) scale(1.03); }
+            50% { transform: translateY(-10px) scale(1.05); }
+            100% { transform: translateY(-8px) scale(1.03); }
         }
         
         @keyframes iconBob {
@@ -1478,18 +1390,64 @@
         /* Responsive Design */
         @media (max-width: 1200px) {
             .mosaic-container {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .mosaic-section:nth-child(1) { /* Skills */
+                grid-column: 1;
+                grid-row: 1 / span 2;
+            }
+            
+            .mosaic-section:nth-child(2) { /* Experience */
+                grid-column: 2;
+                grid-row: 1;
+            }
+            
+            .mosaic-section:nth-child(3) { /* Education */
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .mosaic-section:nth-child(4) { /* Featured Projects */
+                grid-column: 2;
+                grid-row: 2 / span 2;
+            }
+            
+            .mosaic-section:nth-child(5) { /* Papers */
+                grid-column: 1;
+                grid-row: 4;
+            }
+            
+            .mosaic-section:nth-child(6) { /* Achievements */
+                grid-column: 2;
+                grid-row: 4;
+            }
+            
+            .mosaic-section:nth-child(7) { /* Certifications */
+                grid-column: 1;
+                grid-row: 5;
+            }
+            
+            .mosaic-section:nth-child(8) { /* Connect */
+                grid-column: 1 / span 2;
+                grid-row: 6;
             }
         }
         
         @media (max-width: 768px) {
             .mosaic-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Reset all grid positions for mobile */
+            .mosaic-section {
+                grid-column: 1 !important;
+                grid-row: auto !important;
             }
             
             .arcade-nav {
-                flex-direction: column;
-                align-items: center;
+                gap: 10px;
             }
             
             .arcade-btn {
@@ -1498,12 +1456,26 @@
                 font-size: 0.5rem;
             }
             
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
             .profile-title {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
             
             .section-title {
-                font-size: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .screen-content {
+                padding: 15px;
+            }
+            
+            .about-section {
+                padding: 20px;
             }
             
             .maze-container {
@@ -1516,17 +1488,49 @@
             }
         }
         
-        @media (max-width: 480px) {
-            .screen-content {
-                padding: 15px;
+        @media (max-width: 576px) {
+            .mosaic-container {
+                grid-template-columns: 1fr;
             }
             
-            .mosaic-section {
-                padding: 15px;
+            .arcade-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .arcade-btn {
+                width: 100%;
+                max-width: 200px;
+                height: 70px;
+                border-radius: 10px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding-left: 20px;
+            }
+            
+            .btn-icon {
+                font-size: 1.2rem;
+                margin-right: 10px;
             }
             
             .profile-title {
-                font-size: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .profile-tagline {
+                font-size: 0.7rem;
+            }
+            
+            .section-title {
+                font-size: 0.9rem;
+            }
+            
+            .about-text {
+                font-size: 0.7rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
             }
             
             .intro-title {
@@ -1598,6 +1602,8 @@
                 <i class="fas fa-play"></i> PRESS TO BEGIN
             </button>
         </div>
+        
+        <button class="skip-intro" id="skip-intro">SKIP INTRO</button>
     </div>
     
     <!-- Main Arcade Container -->
@@ -1685,63 +1691,142 @@
                         </div>
                     </div>
                     
-                    <!-- Mosaic Layout -->
+                    <!-- JOB-FOCUSED MOSAIC LAYOUT -->
                     <div class="mosaic-container">
-                        <!-- Skills Section -->
+                        <!-- Skills Section - HIGH PRIORITY -->
                         <div class="mosaic-section">
                             <h2 class="section-title">Skills</h2>
-                            <div class="skills-grid">
-                                <div class="skill-item">JavaScript</div>
-                                <div class="skill-item">React</div>
-                                <div class="skill-item">Node.js</div>
-                                <div class="skill-item">Python</div>
-                                <div class="skill-item">HTML/CSS</div>
-                                <div class="skill-item">MongoDB</div>
-                                <div class="skill-item">Git</div>
-                                <div class="skill-item">UI/UX Design</div>
+                            <div class="skills-category">
+                                <h3 class="skills-category-title">Programming Languages & Frameworks</h3>
+                                <div class="skills-grid">
+                                    <div class="skill-item">Python</div>
+                                    <div class="skill-item">JavaScript</div>
+                                    <div class="skill-item">TypeScript</div>
+                                    <div class="skill-item">Java</div>
+                                    <div class="skill-item">SQL</div>
+                                    <div class="skill-item">Go</div>
+                                    <div class="skill-item">React.js</div>
+                                    <div class="skill-item">Next.js</div>
+                                    <div class="skill-item">Node.js</div>
+                                    <div class="skill-item">Express.js</div>
+                                    <div class="skill-item">FastAPI</div>
+                                    <div class="skill-item">Spring Boot</div>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h3 class="skills-category-title">Cloud & DevOps</h3>
+                                <div class="skills-grid">
+                                    <div class="skill-item">AWS</div>
+                                    <div class="skill-item">Docker</div>
+                                    <div class="skill-item">Terraform</div>
+                                    <div class="skill-item">CI/CD</div>
+                                    <div class="skill-item">Kubernetes</div>
+                                    <div class="skill-item">GitHub Actions</div>
+                                    <div class="skill-item">Jenkins</div>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h3 class="skills-category-title">AI/ML & Data</h3>
+                                <div class="skills-grid">
+                                    <div class="skill-item">TensorFlow</div>
+                                    <div class="skill-item">PyTorch</div>
+                                    <div class="skill-item">Scikit-learn</div>
+                                    <div class="skill-item">NLP</div>
+                                    <div class="skill-item">Computer Vision</div>
+                                    <div class="skill-item">Pandas</div>
+                                    <div class="skill-item">NumPy</div>
+                                    <div class="skill-item">PostgreSQL</div>
+                                    <div class="skill-item">MongoDB</div>
+                                    <div class="skill-item">Redis</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <!-- Education Section -->
+                        <!-- Experience Timeline - HIGH PRIORITY -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Experience</h2>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">July 2025 - Present</div>
+                                    <div class="timeline-title">Software Engineer</div>
+                                    <div class="timeline-desc">KGS Technology, Remote GA, USA</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">June 2024 - July 2025</div>
+                                    <div class="timeline-title">Software Engineer</div>
+                                    <div class="timeline-desc">Brightmind Enrichment and Schooling, Remote, CA, USA</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">May 2022 - July 2022</div>
+                                    <div class="timeline-title">Software Engineer Intern</div>
+                                    <div class="timeline-desc">Levicon Systems Private Ltd, Mumbai, India</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education Block - HIGH PRIORITY -->
                         <div class="mosaic-section">
                             <h2 class="section-title">Education</h2>
-                            <div class="education-timeline">
+                            <div class="timeline">
                                 <div class="timeline-item">
-                                    <div class="timeline-year">2020 - 2024</div>
-                                    <div class="timeline-title">B.Tech in Computer Science</div>
-                                    <div class="timeline-desc">XYZ University, CGPA: 9.2/10</div>
+                                    <div class="timeline-year">2023 - 2025</div>
+                                    <div class="timeline-title">M.S. in Computer Science</div>
+                                    <div class="timeline-desc">Stevens Institute of Technology, 3.88/4.0, Hoboken, New Jersey</div>
                                 </div>
                                 <div class="timeline-item">
-                                    <div class="timeline-year">2018 - 2020</div>
-                                    <div class="timeline-title">Higher Secondary</div>
-                                    <div class="timeline-desc">ABC School, Percentage: 92%</div>
+                                    <div class="timeline-year">2019 - 2023</div>
+                                    <div class="timeline-title">B.E. in Electronics & Telecommunication</div>
+                                    <div class="timeline-desc">University of Mumbai, 9.35/10, Mumbai, India</div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Featured Projects -->
+                        <!-- Featured Projects - HIGH PRIORITY -->
                         <div class="mosaic-section">
                             <h2 class="section-title">Featured Projects</h2>
                             <div class="featured-projects">
+                                <!-- AWS Microservices & CI/CD Pipeline -->
                                 <div class="featured-project">
-                                    <div class="project-title">E-Commerce Platform</div>
-                                    <div class="project-desc">Full-stack e-commerce solution with React and Node.js</div>
+                                    <div class="project-title">AWS Microservices & CI/CD Pipeline</div>
+                                    <div class="project-desc">Architected a scalable microservices system on AWS with a fully automated blue/green deployment pipeline.</div>
                                     <div class="project-tech">
-                                        <span class="tech-pill">React</span>
-                                        <span class="tech-pill">Node.js</span>
-                                        <span class="tech-pill">MongoDB</span>
+                                        <span class="tech-pill">AWS (ECS, Fargate, ALB)</span>
+                                        <span class="tech-pill">Docker</span>
+                                        <span class="tech-pill">Terraform</span>
+                                        <span class="tech-pill">CI/CD (CodePipeline, CodeDeploy)</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <button class="view-code-btn">View Code</button>
+                                        <button class="view-paper-btn">View Paper</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Miro-Clone Collaborative Whiteboard -->
+                                <div class="featured-project">
+                                    <div class="project-title">Miro-Clone Collaborative Whiteboard</div>
+                                    <div class="project-desc">Built a real-time, multi-user collaborative whiteboard with live cursors and conflict-free synchronization.</div>
+                                    <div class="project-tech">
+                                        <span class="tech-pill">Next.js 14</span>
+                                        <span class="tech-pill">TypeScript</span>
+                                        <span class="tech-pill">Liveblocks</span>
+                                        <span class="tech-pill">Convex</span>
                                     </div>
                                     <div class="project-actions">
                                         <button class="view-code-btn">View Code</button>
                                     </div>
                                 </div>
+                                
+                                <!-- Custom PDF Knowledge Chatbot -->
                                 <div class="featured-project">
-                                    <div class="project-title">Task Management App</div>
-                                    <div class="project-desc">Productivity app with drag-and-drop functionality</div>
+                                    <div class="project-title">Custom PDF Knowledge Chatbot</div>
+                                    <div class="project-desc">AI-powered chatbot with RAG architecture for document-based Q&A using Streamlit and LangChain.</div>
                                     <div class="project-tech">
-                                        <span class="tech-pill">Vue.js</span>
-                                        <span class="tech-pill">Firebase</span>
-                                        <span class="tech-pill">CSS3</span>
+                                        <span class="tech-pill">Python</span>
+                                        <span class="tech-pill">Streamlit</span>
+                                        <span class="tech-pill">LangChain</span>
+                                        <span class="tech-pill">FAISS</span>
                                     </div>
                                     <div class="project-actions">
                                         <button class="view-code-btn">View Code</button>
@@ -1750,105 +1835,112 @@
                             </div>
                         </div>
                         
-                        <!-- Achievements -->
+                        <!-- Papers - MEDIUM PRIORITY -->
+                        <div class="mosaic-section">
+                            <h2 class="section-title">Research Papers</h2>
+                            <div class="papers-list">
+                                <div class="paper-item">
+                                    <h3>Building Microservices and a CI/CD Pipeline with AWS</h3>
+                                    <p>Project paper on scalable microservices architecture implementation, 2024</p>
+                                    <button class="read-paper">Read Paper</button>
+                                </div>
+                                <div class="paper-item">
+                                    <h3>Analysis of NBA Player Offensive Efficiency using Artificial Intelligence</h3>
+                                    <p>AI-driven analysis of basketball player performance metrics, 2023</p>
+                                    <button class="read-paper">Read Paper</button>
+                                </div>
+                                <div class="paper-item">
+                                    <h3>Recognition of Handwritten Mathematical Expressions: A Survey</h3>
+                                    <p>Comprehensive survey of mathematical expression recognition techniques, 2022</p>
+                                    <button class="read-paper">Read Paper</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements - MEDIUM PRIORITY -->
                         <div class="mosaic-section">
                             <h2 class="section-title">Achievements</h2>
-                            <ul class="achievement-list">
+                            <div class="achievement-list">
                                 <li class="achievement-item">
                                     <i class="fas fa-trophy achievement-icon"></i>
                                     <div class="achievement-content">
-                                        <div class="achievement-title">Hackathon Winner 2023</div>
-                                        <p>First place in National Web Development Hackathon</p>
-                                        <div class="achievement-actions">
-                                            <button class="verify-achievement-btn">Verify</button>
-                                        </div>
+                                        <div class="achievement-title">Third Position - Second Year Engineering</div>
+                                        <p>Certificate of Merit for Electronics and Telecommunication, SIES GST, 2020</p>
+                                        <button class="view-certificate-btn">View Certificate</button>
                                     </div>
                                 </li>
                                 <li class="achievement-item">
                                     <i class="fas fa-medal achievement-icon"></i>
                                     <div class="achievement-content">
-                                        <div class="achievement-title">Open Source Contributor</div>
-                                        <p>Regular contributor to major open source projects</p>
-                                        <div class="achievement-actions">
-                                            <button class="verify-achievement-btn">Verify</button>
-                                        </div>
+                                        <div class="achievement-title">Top Scorer - Digital System Design</div>
+                                        <p>Certificate of Merit, SIES GST, 2020</p>
+                                        <button class="view-certificate-btn">View Certificate</button>
                                     </div>
                                 </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Currently Working On -->
-                        <div class="mosaic-section">
-                            <h2 class="section-title">Currently Working On</h2>
-                            <div class="working-on">
-                                <div class="work-item">
-                                    <h3>Game Development Framework</h3>
-                                    <p>Building a JavaScript framework for 2D browser games</p>
-                                    <button class="feedback-btn">Give Feedback</button>
-                                </div>
-                                <div class="work-item">
-                                    <h3>Portfolio Website</h3>
-                                    <p>Creating an interactive portfolio with arcade aesthetics</p>
-                                    <button class="feedback-btn">Give Feedback</button>
-                                </div>
+                                <li class="achievement-item">
+                                    <i class="fas fa-award achievement-icon"></i>
+                                    <div class="achievement-content">
+                                        <div class="achievement-title">Google Developer Student Club</div>
+                                        <p>Certificate of Appreciation, SIES GST, 2022</p>
+                                        <button class="view-certificate-btn">View Certificate</button>
+                                    </div>
+                                </li>
                             </div>
                         </div>
                         
-                        <!-- Papers & Publications -->
-                        <div class="mosaic-section">
-                            <h2 class="section-title">Papers & Publications</h2>
-                            <div class="papers-list">
-                                <div class="paper-item">
-                                    <h3>The Future of Web Gaming</h3>
-                                    <p>Exploring the potential of WebAssembly in browser games</p>
-                                    <button class="read-paper">Read Paper</button>
-                                </div>
-                                <div class="paper-item">
-                                    <h3>Progressive Web Apps</h3>
-                                    <p>How PWAs are changing mobile user experience</p>
-                                    <button class="read-paper">Read Paper</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Certifications -->
+                        <!-- Certifications - COMPACT -->
                         <div class="mosaic-section">
                             <h2 class="section-title">Certifications</h2>
                             <div class="certifications-grid">
                                 <div class="certification-item">
-                                    <i class="fas fa-code certification-icon"></i>
-                                    <h3>Full Stack Development</h3>
-                                    <p>Certified by XYZ Academy</p>
+                                    <i class="fas fa-cloud certification-icon"></i>
+                                    <h3>30 Days of Google Cloud</h3>
+                                    <p>Google Developer Student Clubs, 2021</p>
                                     <button class="verify-btn">Verify</button>
                                 </div>
                                 <div class="certification-item">
-                                    <i class="fas fa-cloud certification-icon"></i>
-                                    <h3>AWS Cloud Practitioner</h3>
-                                    <p>Amazon Web Services Certification</p>
+                                    <i class="fas fa-robot certification-icon"></i>
+                                    <h3>Neural Networks and Deep Learning</h3>
+                                    <p>deeplearning.ai (Coursera), 2020</p>
+                                    <button class="verify-btn">Verify</button>
+                                </div>
+                                <div class="certification-item">
+                                    <i class="fas fa-code certification-icon"></i>
+                                    <h3>Python Essential Training</h3>
+                                    <p>LinkedIn Learning, 2023</p>
                                     <button class="verify-btn">Verify</button>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Explore More -->
+                        <!-- Links & Social Media -->
                         <div class="mosaic-section">
-                            <h2 class="section-title">Explore More</h2>
-                            <div class="resources">
-                                <div class="resource-item">
-                                    <h3>GitHub Profile</h3>
-                                    <p>Check out my code repositories</p>
-                                    <button class="resource-btn">Visit</button>
-                                </div>
-                                <div class="resource-item">
+                            <h2 class="section-title">Connect With Me</h2>
+                            <div class="links-grid">
+                                <a href="#" class="link-item">
+                                    <i class="fab fa-github link-icon"></i>
+                                    <h3>GitHub</h3>
+                                </a>
+                                <a href="#" class="link-item">
+                                    <i class="fab fa-linkedin link-icon"></i>
                                     <h3>LinkedIn</h3>
-                                    <p>Connect with me professionally</p>
-                                    <button class="resource-btn">Connect</button>
-                                </div>
-                                <div class="resource-item">
+                                </a>
+                                <a href="#" class="link-item">
+                                    <i class="fab fa-twitter link-icon"></i>
+                                    <h3>Twitter</h3>
+                                </a>
+                                <a href="#" class="link-item">
+                                    <i class="fas fa-blog link-icon"></i>
                                     <h3>Blog</h3>
-                                    <p>Read my thoughts on tech</p>
-                                    <button class="resource-btn">Read</button>
-                                </div>
+                                </a>
+                                <a href="#" class="link-item">
+                                    <i class="fas fa-envelope link-icon"></i>
+                                    <h3>Email</h3>
+                                </a>
+                                <a href="#" class="link-item">
+                                    <i class="fas fa-file-pdf link-icon"></i>
+                                    <h3>Resume</h3>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1885,6 +1977,7 @@
             const loadingProgress = document.getElementById('loading-progress');
             const loadingText = document.getElementById('loading-text');
             const beginBtn = document.getElementById('begin-btn');
+            const skipIntro = document.getElementById('skip-intro');
             const aboutText = document.getElementById('about-text');
             
             let progress = 0;
@@ -1923,6 +2016,7 @@
             // Auto-transition after 5 seconds
             setTimeout(transitionToContent, 5000);
             
+    
             // Simulate loading progress - balanced speed
             const loadingInterval = setInterval(() => {
                 progress += Math.random() * 12;
@@ -1959,6 +2053,11 @@
                     this.style.transform = '';
                     transitionToContent();
                 }, 200);
+            });
+            
+            // Skip intro button functionality
+            skipIntro.addEventListener('click', function() {
+                transitionToContent();
             });
             
             // Fixed Typewriter effect function for paragraphs
