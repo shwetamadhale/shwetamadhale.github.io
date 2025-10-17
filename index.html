@@ -1684,37 +1684,47 @@
                 
                 <!-- Navigation -->
                 <div class="arcade-nav">
-                    <a href="index.html" class="arcade-btn active">
+                    <a href="#about" class="arcade-btn active">
                         <i class="fas fa-home btn-icon"></i>
                         HOME
                     </a>
 
-                    <a href="about.html" class="arcade-btn">
+                    <a href="#skills" class="arcade-btn">
                         <i class="fas fa-graduation-cap btn-icon"></i>
-                        ABOUT
+                        SKILLS
                     </a>
 
-                    <a href="projects.html" class="arcade-btn">
+                    <a href="#experience" class="arcade-btn">
                         <i class="fas fa-code btn-icon"></i>
+                        EXPERIENCE
+                    </a>
+
+                    <a href="#education" class="arcade-btn">
+                        <i class="fas fa-briefcase btn-icon"></i>
+                        EDUCATION
+                    </a>
+
+                    <a href="#projects" class="arcade-btn">
+                        <i class="fas fa-project-diagram btn-icon"></i>
                         PROJECTS
                     </a>
 
-                    <a href="achievements.html" class="arcade-btn">
+                    <a href="#achievements" class="arcade-btn">
                         <i class="fas fa-trophy btn-icon"></i>
                         MERITS
                     </a>
 
-                    <a href="certifications.html" class="arcade-btn">
+                    <a href="#certifications" class="arcade-btn">
                         <i class="fas fa-certificate btn-icon"></i>
                         RECORDS
                     </a>
 
-                    <a href="contact.html" class="arcade-btn">
+                    <a href="#connect" class="arcade-btn">
                         <i class="fas fa-envelope btn-icon"></i>
                         CONTACT
                     </a>
 
-                    <a href="#" class="arcade-btn">
+                    <a href="#" class="arcade-btn" id="resume-btn">
                         <i class="fas fa-file-alt btn-icon"></i>
                         RESUME
                     </a>
@@ -1723,7 +1733,7 @@
                 <!-- Main Content -->
                 <div class="main-content">
                     <!-- About Section -->
-                    <div class="about-section">
+                    <div class="about-section" id="about">
                         <h2 class="section-title">About Me</h2>
                         <div class="about-text" id="about-text">
                             <p>Welcome, I am Shweta! I like building things that are technically challenging and genuinely useful.</p>
@@ -1738,7 +1748,7 @@
                     <!-- JOB-FOCUSED MOSAIC LAYOUT -->
                     <div class="mosaic-container">
                         <!-- Skills Section - HIGH PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="skills">
                             <h2 class="section-title">Skills</h2>
                             <div class="skills-category">
                                 <h3 class="skills-category-title">Programming Languages & Frameworks</h3>
@@ -1789,7 +1799,7 @@
                         </div>
                         
                         <!-- Experience Timeline - HIGH PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="experience">
                             <h2 class="section-title">Experience</h2>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -1811,7 +1821,7 @@
                         </div>
                         
                         <!-- Education Block - HIGH PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="education">
                             <h2 class="section-title">Education</h2>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -1828,7 +1838,7 @@
                         </div>
                         
                         <!-- Featured Projects - HIGH PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="projects">
                             <h2 class="section-title">Featured Projects</h2>
                             <div class="featured-projects">
                                 <!-- AWS Microservices & CI/CD Pipeline -->
@@ -1842,8 +1852,8 @@
                                         <span class="tech-pill">CI/CD (CodePipeline, CodeDeploy)</span>
                                     </div>
                                     <div class="project-actions">
-                                        <button class="view-code-btn">View Code</button>
-                                        <button class="view-paper-btn">View Paper</button>
+                                        <button class="view-code-btn" data-project="aws-microservices">View Code</button>
+                                        <button class="view-paper-btn" data-project="aws-microservices">View Paper</button>
                                     </div>
                                 </div>
                                 
@@ -1858,7 +1868,7 @@
                                         <span class="tech-pill">Convex</span>
                                     </div>
                                     <div class="project-actions">
-                                        <button class="view-code-btn">View Code</button>
+                                        <button class="view-code-btn" data-project="miro-clone">View Code</button>
                                     </div>
                                 </div>
                                 
@@ -1873,36 +1883,36 @@
                                         <span class="tech-pill">FAISS</span>
                                     </div>
                                     <div class="project-actions">
-                                        <button class="view-code-btn">View Code</button>
+                                        <button class="view-code-btn" data-project="pdf-chatbot">View Code</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Papers - MEDIUM PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="papers">
                             <h2 class="section-title">Research Papers</h2>
                             <div class="papers-list">
                                 <div class="paper-item">
                                     <h3>Building Microservices and a CI/CD Pipeline with AWS</h3>
                                     <p>Project paper on scalable microservices architecture implementation, 2024</p>
-                                    <button class="read-paper">Read Paper</button>
+                                    <button class="read-paper" data-paper="microservices">Read Paper</button>
                                 </div>
                                 <div class="paper-item">
                                     <h3>Analysis of NBA Player Offensive Efficiency using Artificial Intelligence</h3>
                                     <p>AI-driven analysis of basketball player performance metrics, 2023</p>
-                                    <button class="read-paper">Read Paper</button>
+                                    <button class="read-paper" data-paper="nba-analysis">Read Paper</button>
                                 </div>
                                 <div class="paper-item">
                                     <h3>Recognition of Handwritten Mathematical Expressions: A Survey</h3>
                                     <p>Comprehensive survey of mathematical expression recognition techniques, 2022</p>
-                                    <button class="read-paper">Read Paper</button>
+                                    <button class="read-paper" data-paper="math-recognition">Read Paper</button>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Achievements - MEDIUM PRIORITY -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="achievements">
                             <h2 class="section-title">Achievements</h2>
                             <div class="achievement-list">
                                 <li class="achievement-item">
@@ -1910,7 +1920,7 @@
                                     <div class="achievement-content">
                                         <div class="achievement-title">Third Position - Second Year Engineering</div>
                                         <p>Certificate of Merit for Electronics and Telecommunication, SIES GST, 2020</p>
-                                        <button class="view-certificate-btn">View Certificate</button>
+                                        <button class="view-certificate-btn" data-certificate="third-position">View Certificate</button>
                                     </div>
                                 </li>
                                 <li class="achievement-item">
@@ -1918,7 +1928,7 @@
                                     <div class="achievement-content">
                                         <div class="achievement-title">Top Scorer - Digital System Design</div>
                                         <p>Certificate of Merit, SIES GST, 2020</p>
-                                        <button class="view-certificate-btn">View Certificate</button>
+                                        <button class="view-certificate-btn" data-certificate="top-scorer">View Certificate</button>
                                     </div>
                                 </li>
                                 <li class="achievement-item">
@@ -1926,62 +1936,62 @@
                                     <div class="achievement-content">
                                         <div class="achievement-title">Google Developer Student Club</div>
                                         <p>Certificate of Appreciation, SIES GST, 2022</p>
-                                        <button class="view-certificate-btn">View Certificate</button>
+                                        <button class="view-certificate-btn" data-certificate="gdsc">View Certificate</button>
                                     </div>
                                 </li>
                             </div>
                         </div>
                         
                         <!-- Certifications - COMPACT -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="certifications">
                             <h2 class="section-title">Certifications</h2>
                             <div class="certifications-grid">
                                 <div class="certification-item">
                                     <i class="fas fa-cloud certification-icon"></i>
                                     <h3>30 Days of Google Cloud</h3>
                                     <p>Google Developer Student Clubs, 2021</p>
-                                    <button class="verify-btn">Verify</button>
+                                    <button class="verify-btn" data-cert="google-cloud">Verify</button>
                                 </div>
                                 <div class="certification-item">
                                     <i class="fas fa-robot certification-icon"></i>
                                     <h3>Neural Networks and Deep Learning</h3>
                                     <p>deeplearning.ai (Coursera), 2020</p>
-                                    <button class="verify-btn">Verify</button>
+                                    <button class="verify-btn" data-cert="neural-networks">Verify</button>
                                 </div>
                                 <div class="certification-item">
                                     <i class="fas fa-code certification-icon"></i>
                                     <h3>Python Essential Training</h3>
                                     <p>LinkedIn Learning, 2023</p>
-                                    <button class="verify-btn">Verify</button>
+                                    <button class="verify-btn" data-cert="python">Verify</button>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Links & Social Media -->
-                        <div class="mosaic-section">
+                        <div class="mosaic-section" id="connect">
                             <h2 class="section-title">Connect With Me</h2>
                             <div class="links-grid">
-                                <a href="#" class="link-item">
+                                <a href="https://github.com/shweta" class="link-item" target="_blank">
                                     <i class="fab fa-github link-icon"></i>
                                     <h3>GitHub</h3>
                                 </a>
-                                <a href="#" class="link-item">
+                                <a href="https://linkedin.com/in/shweta" class="link-item" target="_blank">
                                     <i class="fab fa-linkedin link-icon"></i>
                                     <h3>LinkedIn</h3>
                                 </a>
-                                <a href="#" class="link-item">
+                                <a href="https://twitter.com/shweta" class="link-item" target="_blank">
                                     <i class="fab fa-twitter link-icon"></i>
                                     <h3>Twitter</h3>
                                 </a>
-                                <a href="#" class="link-item">
+                                <a href="https://shweta.dev/blog" class="link-item" target="_blank">
                                     <i class="fas fa-blog link-icon"></i>
                                     <h3>Blog</h3>
                                 </a>
-                                <a href="#" class="link-item">
+                                <a href="mailto:shweta@example.com" class="link-item">
                                     <i class="fas fa-envelope link-icon"></i>
                                     <h3>Email</h3>
                                 </a>
-                                <a href="#" class="link-item">
+                                <a href="#" class="link-item" id="resume-link">
                                     <i class="fas fa-file-pdf link-icon"></i>
                                     <h3>Resume</h3>
                                 </a>
@@ -1993,16 +2003,16 @@
                 <!-- Footer -->
                 <div class="arcade-footer">
                     <div class="social-links">
-                        <a href="#" class="social-link">
+                        <a href="https://github.com/shweta" class="social-link" target="_blank">
                             <i class="fab fa-github social-icon"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://linkedin.com/in/shweta" class="social-link" target="_blank">
                             <i class="fab fa-linkedin social-icon"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://twitter.com/shweta" class="social-link" target="_blank">
                             <i class="fab fa-twitter social-icon"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://codepen.io/shweta" class="social-link" target="_blank">
                             <i class="fab fa-codepen social-icon"></i>
                         </a>
                     </div>
@@ -2054,6 +2064,10 @@
                     
                     // Typewriter effect for about text
                     typeWriterEffect(aboutText);
+                    
+                    // Initialize navigation and interactions
+                    initNavigation();
+                    initButtonInteractions();
                 }, 1500);
             }
             
@@ -2153,24 +2167,61 @@
                     p.setAttribute('data-original-text', p.textContent);
                 });
             });
-            
-            // Add hover effects to arcade buttons
+        });
+        
+        // Initialize navigation
+        function initNavigation() {
             const arcadeButtons = document.querySelectorAll('.arcade-btn');
+            const sections = document.querySelectorAll('.mosaic-section, .about-section');
+            
+            // Smooth scrolling for navigation
             arcadeButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
+                    if (this.id === 'resume-btn') {
+                        e.preventDefault();
+                        // Handle resume download
+                        downloadResume();
+                        return;
+                    }
+                    
                     e.preventDefault();
                     
-                    // Remove active class from all buttons
-                    arcadeButtons.forEach(btn => btn.classList.remove('active'));
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            // Smooth scroll to section
+                            window.scrollTo({
+                                top: targetSection.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Update active button
+                            arcadeButtons.forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    }
+                });
+            });
+            
+            // Update active nav on scroll
+            window.addEventListener('scroll', function() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
                     
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Add some visual feedback
-                    this.style.transform = 'scale(0.9)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 200);
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                arcadeButtons.forEach(button => {
+                    button.classList.remove('active');
+                    if (button.getAttribute('href') === `#${currentSection}`) {
+                        button.classList.add('active');
+                    }
                 });
             });
             
@@ -2185,7 +2236,126 @@
                     }, 200);
                 });
             });
-        });
+        }
+        
+        // Initialize button interactions
+        function initButtonInteractions() {
+            // Project buttons
+            const viewCodeButtons = document.querySelectorAll('.view-code-btn');
+            const viewPaperButtons = document.querySelectorAll('.view-paper-btn');
+            const readPaperButtons = document.querySelectorAll('.read-paper');
+            const viewCertificateButtons = document.querySelectorAll('.view-certificate-btn');
+            const verifyButtons = document.querySelectorAll('.verify-btn');
+            const resumeBtn = document.getElementById('resume-btn');
+            const resumeLink = document.getElementById('resume-link');
+            
+            // Project code links
+            const projectLinks = {
+                'aws-microservices': 'https://github.com/shweta/aws-microservices',
+                'miro-clone': 'https://github.com/shweta/miro-clone',
+                'pdf-chatbot': 'https://github.com/shweta/pdf-chatbot'
+            };
+            
+            // Paper links
+            const paperLinks = {
+                'microservices': '/papers/microservices-paper.pdf',
+                'nba-analysis': '/papers/nba-analysis-paper.pdf',
+                'math-recognition': '/papers/math-recognition-paper.pdf'
+            };
+            
+            // Certificate links
+            const certificateLinks = {
+                'third-position': '/certificates/third-position.pdf',
+                'top-scorer': '/certificates/top-scorer.pdf',
+                'gdsc': '/certificates/gdsc.pdf'
+            };
+            
+            // Certification verification links
+            const certificationLinks = {
+                'google-cloud': 'https://www.cloudskillsboost.google/public_profiles/...',
+                'neural-networks': 'https://coursera.org/verify/...',
+                'python': 'https://linkedin.com/learning/certificates/...'
+            };
+            
+            // View code buttons
+            viewCodeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const project = this.getAttribute('data-project');
+                    if (projectLinks[project]) {
+                        window.open(projectLinks[project], '_blank');
+                    } else {
+                        alert('Project code repository coming soon!');
+                    }
+                });
+            });
+            
+            // View paper buttons
+            viewPaperButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const project = this.getAttribute('data-project');
+                    if (paperLinks[project]) {
+                        window.open(paperLinks[project], '_blank');
+                    } else {
+                        alert('Research paper coming soon!');
+                    }
+                });
+            });
+            
+            // Read paper buttons
+            readPaperButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const paper = this.getAttribute('data-paper');
+                    if (paperLinks[paper]) {
+                        window.open(paperLinks[paper], '_blank');
+                    } else {
+                        alert('Research paper coming soon!');
+                    }
+                });
+            });
+            
+            // View certificate buttons
+            viewCertificateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const certificate = this.getAttribute('data-certificate');
+                    if (certificateLinks[certificate]) {
+                        window.open(certificateLinks[certificate], '_blank');
+                    } else {
+                        alert('Certificate coming soon!');
+                    }
+                });
+            });
+            
+            // Verify certification buttons
+            verifyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cert = this.getAttribute('data-cert');
+                    if (certificationLinks[cert]) {
+                        window.open(certificationLinks[cert], '_blank');
+                    } else {
+                        alert('Certification verification link coming soon!');
+                    }
+                });
+            });
+            
+            // Resume download function
+            function downloadResume() {
+                // In a real implementation, this would trigger a file download
+                // For now, we'll show an alert and open a placeholder
+                alert('Downloading resume...');
+                window.open('/resume/shweta-resume.pdf', '_blank');
+            }
+            
+            // Resume button and link
+            if (resumeBtn) {
+                resumeBtn.addEventListener('click', downloadResume);
+            }
+            if (resumeLink) {
+                resumeLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    downloadResume();
+                });
+            }
+        }
     </script>
 </body>
 </html>
