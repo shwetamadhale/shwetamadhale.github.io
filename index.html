@@ -1682,44 +1682,34 @@
                     <p class="profile-tagline">Full Stack Developer & AI Enthusiast</p>
                 </div>
                 
-                <!-- Navigation -->
+                <!-- Navigation - UPDATED TO POINT TO SEPARATE PAGES -->
                 <div class="arcade-nav">
-                    <a href="#about" class="arcade-btn active">
+                    <a href="index.html" class="arcade-btn active">
                         <i class="fas fa-home btn-icon"></i>
                         HOME
                     </a>
 
-                    <a href="#skills" class="arcade-btn">
+                    <a href="about.html" class="arcade-btn">
                         <i class="fas fa-graduation-cap btn-icon"></i>
-                        SKILLS
+                        ABOUT
                     </a>
 
-                    <a href="#experience" class="arcade-btn">
+                    <a href="projects.html" class="arcade-btn">
                         <i class="fas fa-code btn-icon"></i>
-                        EXPERIENCE
-                    </a>
-
-                    <a href="#education" class="arcade-btn">
-                        <i class="fas fa-briefcase btn-icon"></i>
-                        EDUCATION
-                    </a>
-
-                    <a href="#projects" class="arcade-btn">
-                        <i class="fas fa-project-diagram btn-icon"></i>
                         PROJECTS
                     </a>
 
-                    <a href="#achievements" class="arcade-btn">
+                    <a href="achievements.html" class="arcade-btn">
                         <i class="fas fa-trophy btn-icon"></i>
                         MERITS
                     </a>
 
-                    <a href="#certifications" class="arcade-btn">
+                    <a href="certifications.html" class="arcade-btn">
                         <i class="fas fa-certificate btn-icon"></i>
                         RECORDS
                     </a>
 
-                    <a href="#connect" class="arcade-btn">
+                    <a href="contact.html" class="arcade-btn">
                         <i class="fas fa-envelope btn-icon"></i>
                         CONTACT
                     </a>
@@ -1733,7 +1723,7 @@
                 <!-- Main Content -->
                 <div class="main-content">
                     <!-- About Section -->
-                    <div class="about-section" id="about">
+                    <div class="about-section">
                         <h2 class="section-title">About Me</h2>
                         <div class="about-text" id="about-text">
                             <p>Welcome, I am Shweta! I like building things that are technically challenging and genuinely useful.</p>
@@ -1748,7 +1738,7 @@
                     <!-- JOB-FOCUSED MOSAIC LAYOUT -->
                     <div class="mosaic-container">
                         <!-- Skills Section - HIGH PRIORITY -->
-                        <div class="mosaic-section" id="skills">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Skills</h2>
                             <div class="skills-category">
                                 <h3 class="skills-category-title">Programming Languages & Frameworks</h3>
@@ -1799,7 +1789,7 @@
                         </div>
                         
                         <!-- Experience Timeline - HIGH PRIORITY -->
-                        <div class="mosaic-section" id="experience">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Experience</h2>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -1821,7 +1811,7 @@
                         </div>
                         
                         <!-- Education Block - HIGH PRIORITY -->
-                        <div class="mosaic-section" id="education">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Education</h2>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -1838,7 +1828,7 @@
                         </div>
                         
                         <!-- Featured Projects - HIGH PRIORITY -->
-                        <div class="mosaic-section" id="projects">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Featured Projects</h2>
                             <div class="featured-projects">
                                 <!-- AWS Microservices & CI/CD Pipeline -->
@@ -1890,7 +1880,7 @@
                         </div>
                         
                         <!-- Papers - MEDIUM PRIORITY -->
-                        <div class="mosaic-section" id="papers">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Research Papers</h2>
                             <div class="papers-list">
                                 <div class="paper-item">
@@ -1912,7 +1902,7 @@
                         </div>
                         
                         <!-- Achievements - MEDIUM PRIORITY -->
-                        <div class="mosaic-section" id="achievements">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Achievements</h2>
                             <div class="achievement-list">
                                 <li class="achievement-item">
@@ -1943,7 +1933,7 @@
                         </div>
                         
                         <!-- Certifications - COMPACT -->
-                        <div class="mosaic-section" id="certifications">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Certifications</h2>
                             <div class="certifications-grid">
                                 <div class="certification-item">
@@ -1968,7 +1958,7 @@
                         </div>
                         
                         <!-- Links & Social Media -->
-                        <div class="mosaic-section" id="connect">
+                        <div class="mosaic-section">
                             <h2 class="section-title">Connect With Me</h2>
                             <div class="links-grid">
                                 <a href="https://github.com/shweta" class="link-item" target="_blank">
@@ -2065,8 +2055,7 @@
                     // Typewriter effect for about text
                     typeWriterEffect(aboutText);
                     
-                    // Initialize navigation and interactions
-                    initNavigation();
+                    // Initialize button interactions
                     initButtonInteractions();
                 }, 1500);
             }
@@ -2167,14 +2156,9 @@
                     p.setAttribute('data-original-text', p.textContent);
                 });
             });
-        });
-        
-        // Initialize navigation
-        function initNavigation() {
-            const arcadeButtons = document.querySelectorAll('.arcade-btn');
-            const sections = document.querySelectorAll('.mosaic-section, .about-section');
             
-            // Smooth scrolling for navigation
+            // Add hover effects to arcade buttons
+            const arcadeButtons = document.querySelectorAll('.arcade-btn');
             arcadeButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     if (this.id === 'resume-btn') {
@@ -2184,44 +2168,17 @@
                         return;
                     }
                     
-                    e.preventDefault();
+                    // Remove active class from all buttons
+                    arcadeButtons.forEach(btn => btn.classList.remove('active'));
                     
-                    const targetId = this.getAttribute('href');
-                    if (targetId && targetId.startsWith('#')) {
-                        const targetSection = document.querySelector(targetId);
-                        if (targetSection) {
-                            // Smooth scroll to section
-                            window.scrollTo({
-                                top: targetSection.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                            
-                            // Update active button
-                            arcadeButtons.forEach(btn => btn.classList.remove('active'));
-                            this.classList.add('active');
-                        }
-                    }
-                });
-            });
-            
-            // Update active nav on scroll
-            window.addEventListener('scroll', function() {
-                let currentSection = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
+                    // Add active class to clicked button
+                    this.classList.add('active');
                     
-                    if (window.scrollY >= (sectionTop - 200)) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-                
-                arcadeButtons.forEach(button => {
-                    button.classList.remove('active');
-                    if (button.getAttribute('href') === `#${currentSection}`) {
-                        button.classList.add('active');
-                    }
+                    // Add some visual feedback
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
                 });
             });
             
@@ -2236,7 +2193,7 @@
                     }, 200);
                 });
             });
-        }
+        });
         
         // Initialize button interactions
         function initButtonInteractions() {
